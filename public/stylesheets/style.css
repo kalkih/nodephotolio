@@ -1,8 +1,23 @@
-body {
+html, body {
+    font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
+    padding: 0;
+    margin: 0;
+}
+
+#content {
   padding: 50px;
-  font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
 }
 
 a {
   color: #00B7FF;
 }
+
+#header,
+#footer {
+    background: black;
+    color: white;
+    font-size: 1.4em;
+    padding: 30px;
+}
+
+#header

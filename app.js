@@ -4,9 +4,14 @@ var favicon = require('serve-favicon');
 var logger = require('morgan');
 var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
+var passwordHash = require('password-hash');
+
+var models = require("./models");
 
 var routes = require('./routes/index');
-var users = require('./routes/users');
+var login = require('./routes/login');
+var photos = require('./routes/photos');
+var dashboard = require('./routes/dashboard');
 
 var app = express();
 
@@ -22,8 +27,11 @@ app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
+app.locals.appdata = require('./data.json');
 app.use('/', routes);
-app.use('/users', users);
+app.use('/login', login);
+app.use('/photos', photos);
+app.use('/dashboard', dashboard);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
@@ -31,6 +39,15 @@ app.use(function(req, res, next) {
     err.status = 404;
     next(err);
 });
+
+/*
+models.User.create({
+    username: app.locals.appdata.admin.username,
+    password: passwordHash.generate(app.locals.appdata.admin.password)
+}).then(function() {
+    console.log("User created")
+});
+*/
 
 // error handlers
 
