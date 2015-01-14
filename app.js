@@ -34,7 +34,6 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(express.static(path.join(__dirname, 'public')));
 app.use(flash());
-app.use(busboy());
 
 app.locals.appdata = require('./data.json');
 
