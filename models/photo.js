@@ -7,7 +7,6 @@ module.exports = function(sequelize, DataTypes) {
         country: DataTypes.STRING,
         city: DataTypes.STRING,
         url: DataTypes.STRING,
-        thumb: DataTypes.STRING,
         featured: DataTypes.STRING
     });
 

@@ -7,14 +7,14 @@
     <div id="content" class="container">
         <!-- Content -->
         <h1>Upload</h1>
-        <form class="form-horizontal" method="POST" action="/dashboard/upload">
+        <form class="form-horizontal" method="POST" action="/dashboard/upload" enctype="multipart/form-data">
             <fieldset>
 
                 <!-- File Button -->
                 <div class="control-group">
                   <label class="control-label" for="photo">Photo</label>
                   <div class="controls">
-                    <input id="photo" name="photos" class="input-file" type="file" multiple="">
+                    <input id="photo" name="photos" class="input-file" type="file" multiple>
                   </div>
                 </div>
 
@@ -61,17 +61,6 @@
                       <option>November</option>
                       <option>Decemeber</option>
                     </select>
-                  </div>
-                </div>
-
-                <!-- Multiple Checkboxes -->
-                <div class="control-group">
-                  <label class="control-label" for="month">Featured</label>
-                  <div class="controls">
-                    <label class="checkbox-inline" for="featured-0">
-                      <input type="checkbox" name="featured" id="featured-0" value="true">
-                      Yes
-                    </label>
                   </div>
                 </div>
 

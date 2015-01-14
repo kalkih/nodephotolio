@@ -6,6 +6,7 @@ var session = require('express-session')
 var bodyParser = require('body-parser');
 var passwordHash = require('password-hash');
 var flash = require('connect-flash');
+var fs = require('fs-extra');
 
 var models = require("./models");
 
@@ -33,6 +34,7 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(express.static(path.join(__dirname, 'public')));
 app.use(flash());
+app.use(busboy());
 
 app.locals.appdata = require('./data.json');
 

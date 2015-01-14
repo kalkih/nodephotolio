@@ -1,5 +1,10 @@
 var models  = require('../models');
 var express = require('express');
+var formidable = require('formidable'),
+    http = require('http'),
+    util = require('util');
+var path = require('path');
+var fs = require('fs-extra');
 var router = express.Router();
 
 router.get('/', function(req, res) {
@@ -32,39 +37,71 @@ router.post('/upload', function(req, res) {
         return;
     }
 
-    if (!req.body.photos) {
-        res.redirect('/dashboard/upload');
-        return;
-    };
-    if (!req.body.city) {
-        req.body.city = null;
-    };
-    var files = 0;
+    var photos = [];
+    var fields = [];
+    var oldpath = [];
+    var upload_dir;
 
-    if (req.body.photos instanceof Array) {
-        var photos = req.body.photos;
-    } else {
-        var photos = [req.body.photos];
-    };
-    photos.forEach(function(element, index){
-        if (req.body.featured != 'true') {
-            req.body.featured = 'false';
-        };
-        models.Photo.create({
-            url : element,
-            thumb : element,
-            country : req.body.country,
-            city : req.body.country,
-            year : req.body.year,
-            month : req.body.month,
-            featured : req.body.featured
-        }).then(function() {
-            console.log("Photo saved.")
+    // Upload
+    var form = new formidable.IncomingForm();
+
+    form.on('field', function(field, value) {
+        fields.push(value)
+    });
+
+    // parse a file upload
+    form.on('file', function(field, file) {
+        var
+            old_path = file.path,
+            ext = file.name.split('.').pop(),
+            index = old_path.lastIndexOf('/') + 1,
+            filename = old_path.substr(index);
+            oldpath.push(old_path);
+
+            if (fields[1] == 'undefined') {
+            upload_dir = path.join(process.env.PWD, '/public/photos/' + fields[0] + '/' + fields[2]);
+            } else {
+                upload_dir = path.join(process.env.PWD, '/public/photos/' + fields[0] + '/' + fields[1] + '/' + fields[2]);
+            };
+
+            if (!fs.exists(upload_dir)){
+                fs.mkdirpSync(upload_dir);
+                console.log('New folder created');
+            }
+
+        photos.push(filename + '.' + ext);
+    })
+    .on('end', function() {
+
+        var new_path;
+        photos.forEach(function(element, index){
+
+            new_path = path.join(upload_dir, element);
+            console.log(oldpath[index]);
+            console.log(new_path);
+
+            fs.rename(oldpath[index], new_path, function (err) {
+                if (err) throw err;
+            });
+
+            models.Photo.create({
+                url : upload_dir + '/' + element,
+                country : fields[0],
+                city : fields[1],
+                year : fields[2],
+                month : fields[3],
+            }).then(function() {
+            });
         });
 
-        files++;
+        req.flash('success', photos.length + ' uploaded');
+        res.redirect('/dashboard');
+
     });
-    console.log(files + " photos saved.")
+    form.parse(req, function() {
+
+    });
+
 });
 
 module.exports = router;
