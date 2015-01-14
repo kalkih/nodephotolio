@@ -3,11 +3,11 @@ var express = require('express');
 var router = express.Router();
 
 router.get('/', function(req, res) {
-    res.render('dashboard/dashboard', { title: 'Dashboard' });
+    res.render('dashboard/dashboard', { title: 'Dashboard', messages: req.flash('info') });
 });
 
 router.get('/upload', function(req, res) {
-    res.render('dashboard/upload', { title: 'Upload' });
+    res.render('dashboard/upload', { title: 'Upload', messages: req.flash('info') });
 });
 
 router.post('/upload', function(req, res) {

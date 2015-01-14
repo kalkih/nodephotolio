@@ -5,7 +5,7 @@ var router = express.Router();
 
 /* GET users listing. */
 router.get('/', function(req, res) {
-    res.render('login', { title: 'Login' });
+    res.render('login', { title: 'Login', messages: req.flash('info') });
 });
 
 router.post('/', function(req, res) {
@@ -16,14 +16,15 @@ router.post('/', function(req, res) {
     }).then(function(user) {
         if (user) {
             if (passwordHash.verify(req.body.password, user.password)) {
+                req.flash('info', 'Logged in!')
                 console.log("Success");
                 res.redirect('/dashboard');
             } else {
-                console.log("Wrong password");
+                req.flash('info', 'Wrong password!')
                 res.redirect('/login');
             }
         } else {
-            console.log("Wrong username");
+            req.flash('info', 'Wrong username!')
             res.redirect('/login');
         }
     });
