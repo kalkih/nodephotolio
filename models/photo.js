@@ -2,12 +2,14 @@
 
 module.exports = function(sequelize, DataTypes) {
     var Photo  = sequelize.define("Photo", {
-        year: DataTypes.INTEGER,
-        month: DataTypes.STRING,
-        country: DataTypes.STRING,
-        city: DataTypes.STRING,
         url: DataTypes.STRING,
         featured: DataTypes.STRING
+    }, {
+        classMethods: {
+            associate: function(models) {
+                Photo.belongsTo(models.Gallery)
+            }
+        }
     });
 
     return Photo;

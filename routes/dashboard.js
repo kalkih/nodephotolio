@@ -15,32 +15,34 @@ router.get('/', function(req, res) {
         return;
     }
 
-    res.render('dashboard/dashboard', { title: 'Dashboard', messages: req.flash('info') });
+    res.render('dashboard/dashboard', { title: 'Dashboard', messages: req.flash() });
 });
 
 router.get('/upload', function(req, res) {
-
+    /*
     if (!req.session.user) {
         req.flash('error', 'Login required');
         res.redirect('/login');
         return;
-    }
+    }*/
 
-    res.render('dashboard/upload', { title: 'Upload', messages: req.flash('info') });
+    res.render('dashboard/upload', { title: 'Upload', messages: req.flash() });
 });
 
 router.post('/upload', function(req, res) {
-
+    /*
     if (!req.session.user) {
         req.flash('error', 'Login required');
         res.redirect('/login');
         return;
     }
+    */
 
     var photos = [];
     var fields = [];
     var oldpath = [];
     var upload_dir;
+    var galleryId;
 
     // Upload
     var form = new formidable.IncomingForm();
@@ -73,29 +75,51 @@ router.post('/upload', function(req, res) {
     })
     .on('end', function() {
 
-        var new_path;
-        photos.forEach(function(element, index){
-
-            new_path = path.join(upload_dir, element);
-            console.log(oldpath[index]);
-            console.log(new_path);
-
-            fs.rename(oldpath[index], new_path, function (err) {
-                if (err) throw err;
-            });
-
-            models.Photo.create({
-                url : upload_dir + '/' + element,
+        models.Gallery.find({
+            where : {
                 country : fields[0],
                 city : fields[1],
                 year : fields[2],
                 month : fields[3],
-            }).then(function() {
+            }
+        }).then(function(Gallery) {
+            if (Gallery) {
+                console.log(fields[1]);
+                galleryId = Gallery.id;
+                req.flash('info', 'Added ' + photos.length + ' photos to existing gallery');
+            } else {
+                models.Gallery.create({
+                    country : fields[0],
+                    city : fields[1],
+                    year : fields[2],
+                    month : fields[3],
+                }).then (function(Gallery) {
+                    galleryId = Gallery.id;
+                });
+                req.flash('info', 'Added ' + photos.length + ' photos to new gallery');
+            }
+
+            console.log(Gallery);
+
+            var new_path;
+            photos.forEach(function(element, index){
+
+                new_path = path.join(upload_dir, element);
+
+                fs.rename(oldpath[index], new_path, function (err) {
+                    if (err) throw err;
+                });
+
+                models.Photo.create({
+                    url : upload_dir + '/' + element,
+                    GalleryId : galleryId
+                });
             });
+
+            res.redirect('/dashboard/upload');
+
         });
 
-        req.flash('success', photos.length + ' uploaded');
-        res.redirect('/dashboard');
 
     });
     form.parse(req, function() {
