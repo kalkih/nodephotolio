@@ -23,4 +23,18 @@
   </div>
 </nav>
 
-<%if (typeof messages !== 'undefined') {%> <%= messages %>  <%}%>
+<%if (typeof messages.error !== 'undefined') {%>
+    <div class="error">
+        <%= messages.error %>
+    </div>
+<%}%>
+<%if (typeof messages.info !== 'undefined') {%>
+    <div class="error">
+        <%= messages.info %>
+    </div>
+<%}%>
+<%if (typeof messages.success !== 'undefined') {%>
+    <div class="error">
+        <%= messages.success %>
+    </div>
+<%}%>
