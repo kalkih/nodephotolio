@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <% include ../page/head.ejs %>
+</head>
+<body>
+
+    <% include ../page/header.ejs %>
+
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-sm-9 col-md-10 main">
+                <h1 class="page-header"><%= title %></h1>
+                <div class="row placeholders">
+
+                    <% galleries.forEach(function(gallery, index) { %>
+                        <a href="<%= gallery['dataValues']['url'] %>">
+                            <div class="col-xs-6 col-sm-3 placeholder">
+                                <% if (gallery['dataValues']['city']) { %>
+                                    <h4 class="location"><%= gallery['dataValues']['city'] %></h4>
+                                <% } else { %>
+                                    <h4 class="location"><%= gallery['dataValues']['country'] %></h4>
+                                <% } %>
+                                <h5 class="date"><%= gallery['dataValues']['month'] %> <%= gallery['dataValues']['year'] %></h5>
+                            </div>
+                        </a>
+                    <% }); %>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <% include ../page/jsdefaults.ejs %>
+
+</body>
+</html>

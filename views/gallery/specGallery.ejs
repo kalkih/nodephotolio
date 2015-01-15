@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <% include ../page/head.ejs %>
+</head>
+<body>
+
+    <% include ../page/header.ejs %>
+
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-sm-12 col-md-12 main">
+                <h1 class="page-header"><%= title %></h1>
+                <div class="row placeholders">
+
+                    <% photos.forEach(function(photo, index) { %>
+                        <a href="<%= photo['dataValues']['url'] %>">
+                            <div class="col-xs-12 col-sm-6 col-md-3">
+                                <img src="/thumb<%= photo['dataValues']['url'] %>" class="img-responsive" alt="Photo">
+                            </div>
+                        </a>
+                    <% }); %>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <% include ../page/jsdefaults.ejs %>
+
+</body>
+</html>
