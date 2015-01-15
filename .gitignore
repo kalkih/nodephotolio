@@ -28,6 +28,7 @@ node_modules
 
 # images
 public/photos
+public/thumb
 
 # Debug log from npm
 npm-debug.log
