@@ -42,7 +42,7 @@ html, body {
 }
 
 #slideshow .button {
-  border: 3px solid white;
+  border: 3px solid #fff;
   position: absolute;
   margin: 0 auto;
   left:0;

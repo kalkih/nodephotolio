@@ -6,6 +6,12 @@ var router = express.Router();
 router.get('/', function(req, res) {
 
     models.Gallery.findAll().then(function(galleries) {
+        if (!galleries[0]) {
+            galleries[0] = ['dataValues'];
+            galleries[0]['dataValues'] = ['cover'];
+            galleries[0]['dataValues']['cover'] = '/images/placeholder/placeholder-black.png';
+        res.render('gallery/gallery', { title: 'Gallery', header: '/images/placeholder/placeholder.jpg', galleries: galleries, messages: req.flash(), session: req.session });
+        };
 
         galleries.forEach(function(gallery, index){
             if (gallery['dataValues']['city']) {
@@ -19,12 +25,11 @@ router.get('/', function(req, res) {
                     GalleryId : gallery.id
                 }
             }).then(function(photo) {
-                if (photo['dataValues']['url']) {
+                if (photo) {
                     gallery['dataValues']['thumb'] = "/thumb" + photo['dataValues']['url'];
                     gallery['dataValues']['cover'] = photo['dataValues']['url'];
                 } else {
-                    gallery['dataValues']['thumb'] = "/placeholder/thumb.png";
-                    gallery['dataValues']['cover'] = "/placeholder/cover.png";
+                    gallery['dataValues']['thumb'] = '/images/placeholder/placeholder-thumb-grey.png';
                 }
 
                 if (index == galleries.length -1) {

@@ -21,12 +21,20 @@ $(document).ready(function(){
             sidebarToggleButtonIcon.removeClass('fa-navicon');
             sidebarToggleButtonIcon.addClass('fa-close');
 
+            //
+            $('.title').css('opacity', 0);
+            //
+
         } else{
             sidebar.css('left', -(sidebar.width() / 2));
             sidebarToggleButton.addClass('foldIn');
             sidebarToggleButtonIcon.removeClass('fa-close');
             sidebarToggleButtonIcon.addClass('fa-navicon');
             sidebarToggleButton.css("left", '20px');
+
+            //
+            $('.title').css('opacity', 1);
+            //
         }
 
         sidebarToggleButtonIcon.addClass('spin')

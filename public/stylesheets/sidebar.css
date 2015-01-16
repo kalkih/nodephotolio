@@ -10,6 +10,12 @@
     transition: left .4s;
 }
 
+@media screen and (max-width: 479px) {
+  #sidebar-toggle span {
+    display: none;
+  }
+}
+
 #sidebar-toggle .fa {
   transform: rotate(180deg);
 }
@@ -23,11 +29,11 @@
 }
 
 #sidebar-toggle.foldOut {
-    -webkit-animation: foldOut .4s linear forwards;
-    -moz-animation: foldOut .4s linear forwards;
-    -o-animation: foldOut .4s linear forwards;
-    -ms-animation: foldOut .4s linear forwards;
-    animation: foldOut .4s linear forwards;
+  -webkit-animation: foldOut .4s linear forwards;
+  -moz-animation: foldOut .4s linear forwards;
+  -o-animation: foldOut .4s linear forwards;
+  -ms-animation: foldOut .4s linear forwards;
+  animation: foldOut .4s linear forwards;
 }
 
 #sidebar-toggle.foldIn {
@@ -264,7 +270,7 @@
 
 #sidebar a {
     text-decoration: none;
-    color: #ccc;
+    color: #ccc !important;
 }
 
 #sidebar .social {

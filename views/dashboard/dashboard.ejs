@@ -6,21 +6,34 @@
 
     <% include ../page/header.ejs %>
 
-    <div id="content" class="dashboard">
+    <div id="content" class="dashboard gallery">
 
         <div class="container-fluid">
             <div class="col-sm-12 col-md-12 main text-center">
             <h1 class="heading">Latest Galleries</h1>
+                <% if (!latestGalleries[0]) { %>
+                    <h1 class="heading text-center">Nothing here yet ...</h1>
+                <% };%>
                 <div class="row">
                     <% latestGalleries.forEach(function(gallery, index) { %>
-                        <a href="<%= gallery['dataValues']['url'] %>">
-                            <div class="col-xs-6 col-sm-6 col-md-3 item">
-                                <div class="item-container">
-                                    <img src="<%= gallery['dataValues']['img'] %>" class="img-responsive" alt="Generic thumbnail">
-                                    <h4><%= gallery['dataValues']['name'] %></h4>
+                        <% if (gallery['dataValues']['thumb']) { %>
+                            <a href="<%= gallery['dataValues']['url'] %>">
+
+                                <div class="col-xs-12 col-sm-6 col-md-3 item">
+
+                                    <div class="item-container">
+                                        <% if (gallery['dataValues']['city']) { %>
+                                            <h4 class="location"><%= gallery['dataValues']['city'] %></h4>
+                                        <% } else { %>
+                                            <h4 class="location"><%= gallery['dataValues']['country'] %></h4>
+                                        <% } %>
+                                        <h5 class="date"><%= gallery['dataValues']['month'] %> <%= gallery['dataValues']['year'] %></h5>
+                                        <img src="<%= gallery['dataValues']['thumb'] %>" class="img-responsive thumb" alt="Gallery thumbnail" width="100%">
+
+                                    </div>
                                 </div>
-                            </div>
-                        </a>
+                            </a>
+                        <% }; %>
                     <% }); %>
                 </div>
             </div>

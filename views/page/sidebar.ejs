@@ -7,9 +7,9 @@
         <a href="/"><li><i class="fa fa-home"></i></li></a>
         <a href="/gallery"><li>Gallery</li></a>
         <a href="/about"><li>About</li></a>
-        <%if (typeof session.user !== 'undefined') {%>
+        <% if (typeof session.user !== 'undefined') { %>
             <a href="/dashboard"><li>Dashboard</li></a>
-        <%}%>
+        <% } %>
     <ul>
     <div class="social">
         <span class="row col-md-12 copyright">Copyright © <%= appdata.about.name %></span>

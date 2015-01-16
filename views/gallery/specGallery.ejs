@@ -10,23 +10,31 @@
         <div class="container-fluid">
             <div class="col-sm-12 col-md-12 main">
                 <h1 class="gallery-name"><%= title %></h1>
+                <% if (!photos[0]) { %>
+                    <h1 class="gallery-name">Nothing here yet ...</h1>
+                <% }; %>
                 <div class="row">
-                <% photos.forEach(function(photo, index) { %>
-
-                        <div class="col-xs-12 col-sm-6 col-md-3 item">
-
-                            <div class="item-container">
-                                <img src="/thumb<%= photo['dataValues']['url'] %>" class="img-responsive thumb" alt="photo thumbnail">
-
+                    <% photos.forEach(function(photo, index) { %>
+                            <div class="col-xs-12 col-sm-6 col-md-3 item">
+                                <div class="item-container">
+                                    <img src="/thumb<%= photo['dataValues']['url'] %>" class="img-responsive thumb" alt="photo thumbnail" width="100%">
+                                </div>
                             </div>
-                        </div>
-                <% }); %>
+                    <% }); %>
                 </div>
-                <h2 class="gallery-name"><a href="/gallery"><i class="fa fa-arrow-left"></i> Go back</a></h2>
             </div>
         </div>
-
     </div>
+    <div class="back">
+        <a href="/gallery"><i class="fa fa-arrow-left"></i> <span>Back</span></a>
+    </div>
+    <% if (typeof session.user !== 'undefined') { %>
+        <div class="admin">
+            <a class="upload-text" href="/gallery"><i class="fa fa-upload"></i> <span>Upload</span></a> | <a class="remove-text" href="/gallery"><i class="fa fa-remove"></i> <span>Remove</span></a>
+        </div>
+    <% } %>
+    <div class="bottom"></div>
+
     <% include ../page/jsdefaults.ejs %>
     <script src="/javascripts/gallery.js"></script>
 

@@ -32,7 +32,12 @@ router.get('/', function(req, res) {
                 }
             }).then(function(photo) {
 
-                gallery['dataValues']['img'] = '/thumb' + photo['dataValues']['url'];
+                if (photo) {
+                    gallery['dataValues']['thumb'] = "/thumb" + photo['dataValues']['url'];
+                    gallery['dataValues']['cover'] = photo['dataValues']['url'];
+                } else {
+                    gallery['dataValues']['thumb'] = '/images/placeholder/placeholder-thumb-grey.png';
+                }
 
                 if (gallery['dataValues']['city']) {
                     gallery['dataValues']['name'] = gallery['dataValues']['city'] + ' ' + gallery['dataValues']['month'] + ' ' + gallery['dataValues']['year'];
