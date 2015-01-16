@@ -1,31 +1,34 @@
 <!DOCTYPE html>
 <html>
-<head>
     <% include ../page/head.ejs %>
+    <link rel="stylesheet" href="/stylesheets/background.css">
 </head>
 <body>
-
     <% include ../page/header.ejs %>
-
-    <div class="container-fluid">
-        <div class="row">
+    <% include ../page/background.ejs %>
+    <div id="content" class="gallery gallerySpec">
+        <div class="container-fluid">
             <div class="col-sm-12 col-md-12 main">
-                <h1 class="page-header"><%= title %></h1>
-                <div class="row placeholders">
+                <h1 class="gallery-name"><%= title %></h1>
+                <div class="row">
+                <% photos.forEach(function(photo, index) { %>
 
-                    <% photos.forEach(function(photo, index) { %>
-                        <a href="<%= photo['dataValues']['url'] %>">
-                            <div class="col-xs-12 col-sm-6 col-md-3">
-                                <img src="/thumb<%= photo['dataValues']['url'] %>" class="img-responsive" alt="Photo">
+                        <div class="col-xs-12 col-sm-6 col-md-3 item">
+
+                            <div class="item-container">
+                                <img src="/thumb<%= photo['dataValues']['url'] %>" class="img-responsive thumb" alt="photo thumbnail">
+
                             </div>
-                        </a>
-                    <% }); %>
+                        </div>
+                <% }); %>
                 </div>
+                <h2 class="gallery-name"><a href="/gallery"><i class="fa fa-arrow-left"></i> Go back</a></h2>
             </div>
         </div>
-    </div>
 
+    </div>
     <% include ../page/jsdefaults.ejs %>
+    <script src="/javascripts/gallery.js"></script>
 
 </body>
 </html>

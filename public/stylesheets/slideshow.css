@@ -1,82 +1,5 @@
 @import url(http://fonts.googleapis.com/css?family=Bree+Serif);
 
-html, body {
-  padding: 0;
-  margin: 0;
-  height: 100%;
-  background-color: #fff;
-  -webkit-user-select: none;
-  -moz-user-select: none;
-  -ms-user-select: none;
-  -o-user-select: none;
-  user-select: none;
-}
-
-#slideshow .title {
-  position: absolute;
-  top: 24px;
-  right: 20px;
-  color: #fff;
-  font-family: 'Bree Serif', serif;
-  font-size: 30px;
-  margin: 0 !important;
-  padding: 0 !important;
-}
-
-#slideshow .slideshow-content {
-  position: absolute;
-  margin: 0 auto;
-  top: 25%;
-  color: #fff;
-  left: 0;
-  right: 0;
-  width: 50%;
-  max-width: 500px;
-  text-align: center;
-  font-family: 'Bree Serif', serif;
-  -webkit-user-select: none;
-  -moz-user-select: none;
-  -ms-user-select: none;
-  -o-user-select: none;
-  user-select: none;
-}
-
-#slideshow .button {
-  border: 3px solid white;
-  position: absolute;
-  margin: 0 auto;
-  left:0;
-  right:0;
-  bottom: 30%;
-  text-align: center;
-  width: 140px;
-  vertical-align: middle;
-  background-size: 100% 200%;
-  background-image: linear-gradient(to top, rgba(255, 255, 255, 1) 50%, rgba(255, 255, 255, 0) 50%);
-  transition: background-position .2s;
-  transition: background-position .2s;
-  font-family: 'Bree Serif', serif;
-  -webkit-user-select: none;
-  -moz-user-select: none;
-  -ms-user-select: none;
-  -o-user-select: none;
-  user-select: none;
-}
-#slideshow .button:hover {
-  background-position: 0 -100%;
-  cursor: pointer;
-}
-#slideshow .button:hover span {
-  color: black;
-}
-
-#slideshow .button span {
-  line-height: 50px;
-  color: #fff;
-  vertical-align: middle;
-  font-size: 2em;
-}
-
 #slideshow {
   position: relative;
   display: block;
@@ -85,19 +8,19 @@ html, body {
   height: 100%;
 }
 #slideshow .slide {
-  position: fixed;
+  position: absolute;
   opacity: 0;
 }
 #slideshow .slide.show {
   opacity: 1;
-  position: fixed;
+  position: static;
 }
 #slideshow .slide.animation {
-  -webkit-animation: imageAnimation 8s linear forwards;
-  -moz-animation: imageAnimation 8s linear forwards;
-  -o-animation: imageAnimation 8s linear forwards;
-  -ms-animation: imageAnimation 8s linear forwards;
-  animation: imageAnimation 8s linear forwards;
+  -webkit-animation: imageAnimation-no-rotate 8s linear forwards;
+  -moz-animation: imageAnimation-no-rotate 8s linear forwards;
+  -o-animation: imageAnimation-no-rotate 8s linear forwards;
+  -ms-animation: imageAnimation-no-rotate 8s linear forwards;
+  animation: imageAnimation-no-rotate 8s linear forwards;
 }
 
 #slideshow .slide.show,

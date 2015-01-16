@@ -1,44 +1,49 @@
 <!DOCTYPE html>
 <html>
-<head><% include page/head.ejs %></head>
+  <% include page/head.ejs %>
+  </head>
 <body>
     <% include page/header.ejs %>
 
-    <div id="content" class="container">
-        <!-- Content -->
-        <h1>Login</h1>
-        <form class="form-horizontal" method="POST" action="/login">
-            <fieldset>
+    <div id="content" class="dashboard">
 
-                <div class="control-group">
-                      <label class="control-label" for="username"></label>
-                      <div class="controls">
-                        <input id="username" name="username" type="text" placeholder="Username" class="input-xlarge" required="">
+    <div class="container">
+        <div class="row">
+            <div class="col-centered" style="max-width: 200px">
 
-                      </div>
-                </div>
 
-                <div class="control-group">
-                      <label class="control-label" for="password"></label>
-                      <div class="controls">
-                        <input id="password" name="password" type="password" placeholder="Password" class="input-xlarge" required="">
-                      </div>
-                </div>
+                <form class="form-horizontal" method="POST" action="/login">
+                    <h1>Login</h1>
+                    <fieldset>
 
-                <div class="control-group">
-                      <label class="control-label" for="login"></label>
-                      <div class="controls">
-                        <button id="login" name="login" class="btn btn-primary">Login</button>
-                      </div>
-                </div>
+                        <div class="control-group">
+                              <label class="control-label" for="username"></label>
+                              <div class="controls">
+                                <input id="username" name="username" type="text" placeholder="Username" class="input-xlarge" required="">
 
-            </fieldset>
-        </form>
+                              </div>
+                        </div>
 
-        <!-- Content end -->
+                        <div class="control-group">
+                              <label class="control-label" for="password"></label>
+                              <div class="controls">
+                                <input id="password" name="password" type="password" placeholder="Password" class="input-xlarge" required="">
+                              </div>
+                        </div>
+
+                        <div class="control-group">
+                              <label class="control-label" for="login"></label>
+                              <div class="controls">
+                                <button id="login" name="login" class="btn btn-primary">Login</button>
+                              </div>
+                        </div>
+
+                    </fieldset>
+                </form>
+            </div>
+        </div>
     </div>
-
-    <% include page/footer.ejs %>
+    </div>
 
     <% include page/jsdefaults.ejs %>
 

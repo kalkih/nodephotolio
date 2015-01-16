@@ -1,37 +1,35 @@
 <!DOCTYPE html>
 <html>
-<head>
     <% include ../page/head.ejs %>
-    <link rel='stylesheet' href='/stylesheets/dashboard.css'>
 </head>
 <body>
 
     <% include ../page/header.ejs %>
 
-    <div class="container-fluid">
-      <div class="row">
-        <div class="col-sm-3 col-md-2 sidebar">
-          <ul class="nav nav-sidebar">
-            <li class="active"><a href="#">Overview <span class="sr-only">(current)</span></a></li>
-            <li><a href="dashboard/upload">Gallery upload</a></li>
-            <li><a href="#">Placeholder</a></li>
-            <li><a href="#">Placeholder</a></li>
-          </ul>
-        </div>
-        <div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
-            <h1 class="page-header">Latest Galleries</h1>
-            <div class="row placeholders">
-              <% latestGalleries.forEach(function(gallery, index) { %>
-                    <a href="<%= gallery['dataValues']['url'] %>">
-                        <div class="col-xs-6 col-sm-3 placeholder">
-                            <img src="<%= gallery['dataValues']['img'] %>" class="img-responsive" alt="Generic placeholder thumbnail">
-                            <h4><%= gallery['dataValues']['name'] %></h4>
-                        </div>
-                    </a>
-              <% }); %>
+    <div id="content" class="dashboard">
+
+        <div class="container-fluid">
+            <div class="col-sm-12 col-md-12 main text-center">
+            <h1 class="heading">Latest Galleries</h1>
+                <div class="row">
+                    <% latestGalleries.forEach(function(gallery, index) { %>
+                        <a href="<%= gallery['dataValues']['url'] %>">
+                            <div class="col-xs-6 col-sm-6 col-md-3 item">
+                                <div class="item-container">
+                                    <img src="<%= gallery['dataValues']['img'] %>" class="img-responsive" alt="Generic thumbnail">
+                                    <h4><%= gallery['dataValues']['name'] %></h4>
+                                </div>
+                            </div>
+                        </a>
+                    <% }); %>
+                </div>
+            </div>
+            <div style="clear: both;"></div>
+            <div class="col-centered text-center" style="max-width: 140px; margin-bottom: 100px">
+                <a href="/dashboard/upload"><div class="button"><i class="fa fa-upload"></i><br><span>Upload</span></div></a>
             </div>
         </div>
-      </div>
+
     </div>
 
     <% include ../page/jsdefaults.ejs %>

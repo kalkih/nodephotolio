@@ -1,36 +1,57 @@
 <!DOCTYPE html>
 <html>
-<head>
     <% include ../page/head.ejs %>
+    <link rel="stylesheet" href="/stylesheets/slideshow.css">
 </head>
 <body>
 
     <% include ../page/header.ejs %>
 
-    <div class="container-fluid">
-        <div class="row">
-            <div class="col-sm-9 col-md-10 main">
-                <h1 class="page-header"><%= title %></h1>
-                <div class="row placeholders">
+    <div id="header">
+        <div id="slideshow">
+            <% galleries.forEach(function(gallery, index) { %>
+                <div class="slide" style="background-image: url(<%= gallery['dataValues']['cover'] %>);"></div>
+            <% }); %>
+        </div>
+        <div class="header-content">
+            <h1><%= title %></h1>
+            <% if (typeof subtitle != 'undefined') { %>
+                <h2><%= subtitle %></h2>
+            <% } %>
+        </div>
+    </div>
 
-                    <% galleries.forEach(function(gallery, index) { %>
-                        <a href="<%= gallery['dataValues']['url'] %>">
-                            <div class="col-xs-6 col-sm-3 placeholder">
+    <div id="content" class="gallery">
+
+        <div class="container-fluid">
+            <div class="col-sm-12 col-md-12 main">
+                <div class="row placeholders">
+                <% galleries.forEach(function(gallery, index) { %>
+                    <a href="<%= gallery['dataValues']['url'] %>">
+
+                        <div class="col-xs-12 col-sm-6 col-md-3 item">
+
+                            <div class="item-container">
                                 <% if (gallery['dataValues']['city']) { %>
                                     <h4 class="location"><%= gallery['dataValues']['city'] %></h4>
                                 <% } else { %>
                                     <h4 class="location"><%= gallery['dataValues']['country'] %></h4>
                                 <% } %>
                                 <h5 class="date"><%= gallery['dataValues']['month'] %> <%= gallery['dataValues']['year'] %></h5>
+                                <img src="<%= gallery['dataValues']['thumb'] %>" class="img-responsive thumb" alt="Gallery thumbnail">
+
                             </div>
-                        </a>
-                    <% }); %>
+                        </div>
+                    </a>
+                <% }); %>
                 </div>
             </div>
         </div>
+
     </div>
 
     <% include ../page/jsdefaults.ejs %>
+    <script src="/javascripts/cover.js"></script>
 
 </body>
 </html>

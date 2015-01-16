@@ -36,9 +36,8 @@ router.get('/', function(req, res) {
                     gallery['dataValues']['name'] = gallery['dataValues']['country'] + ' ' + gallery['dataValues']['month'] + ' ' + gallery['dataValues']['year'];
                     gallery['dataValues']['url'] = '/gallery/' + gallery['dataValues']['country'] + '/' + gallery['dataValues']['year'] + '/' + gallery['dataValues']['month'];
                 }
-                console.log('length: ' + galleries.length + 'index: ' + index);
                 if (index == galleries.length -1) {
-                    res.render('dashboard/dashboard', { title: 'Dashboard', messages: req.flash(), latestGalleries: galleries });
+                    res.render('dashboard/dashboard', { title: 'Dashboard', messages: req.flash(), latestGalleries: galleries, session: req.session });
                 };
             });
 
@@ -53,23 +52,22 @@ router.get('/', function(req, res) {
 
 router.get('/upload', function(req, res) {
 
-    /*
     if (!req.session.user) {
         req.flash('error', 'Login required');
         res.redirect('/login');
         return;
-    }*/
+    }
 
-    res.render('dashboard/upload', { title: 'Upload', messages: req.flash() });
+    res.render('dashboard/upload', { title: 'Upload', messages: req.flash(), session: req.session });
 });
 
 router.post('/upload', function(req, res) {
-    /*
+
     if (!req.session.user) {
         req.flash('error', 'Login required');
         res.redirect('/login');
         return;
-    }*/
+    }
 
     var photos = [];
     var fields = [];
@@ -84,10 +82,8 @@ router.post('/upload', function(req, res) {
 
     form.on('field', function(field, value) {
         fields.push(value)
-    });
-
-    // parse a file upload
-    form.on('file', function(field, file) {
+    })
+    .on('file', function(field, file) {
         var
             old_path = file.path,
             ext = file.name.split('.').pop(),
@@ -107,11 +103,11 @@ router.post('/upload', function(req, res) {
 
             if (!fs.exists(upload_dir)){
                 fs.mkdirpSync(upload_dir);
-                console.log('New folder created');
+                //console.log('New photo folder created');
             }
             if (!fs.exists(thumb)){
                 fs.mkdirpSync(thumb);
-                console.log('New folder created');
+                //console.log('New thumb folder created');
             }
 
         photos.push(filename + '.' + ext);
@@ -127,8 +123,34 @@ router.post('/upload', function(req, res) {
             }
         }).then(function(Gallery) {
             if (Gallery) {
+                console.log(Gallery.id);
                 galleryId = Gallery.id;
                 req.flash('info', 'Added ' + photos.length + ' photos to existing gallery');
+                var new_path;
+                photos.forEach(function(element, index){
+
+                    resize_path = path.join(thumb, element);
+                    new_path = path.join(upload_dir, element);
+
+                    fs.renameSync(oldpath[index], new_path, function (err) {
+                        if (err) throw err;
+
+                    });
+
+
+                    gm(new_path)
+                    .resize('800', '600', '^')
+                    .gravity('Center')
+                    .crop('800', '600')
+                    .write(resize_path, function (err) {
+                        if (!err) console.log(' hooray! ');
+                    });
+
+                    models.Photo.create({
+                        url : url + '/' + element,
+                        GalleryId : galleryId
+                    });
+                });
             } else {
                 models.Gallery.create({
                     country : fields[0],
@@ -137,36 +159,35 @@ router.post('/upload', function(req, res) {
                     month : fields[3],
                 }).then (function(Gallery) {
                     galleryId = Gallery.id;
+
+                    var new_path;
+                    photos.forEach(function(element, index){
+
+                        resize_path = path.join(thumb, element);
+                        new_path = path.join(upload_dir, element);
+
+                        fs.renameSync(oldpath[index], new_path, function (err) {
+                            if (err) throw err;
+
+                        });
+
+
+                        gm(new_path)
+                        .resize('800', '600', '^')
+                        .gravity('Center')
+                        .crop('800', '600')
+                        .write(resize_path, function (err) {
+                            if (!err) console.log(' hooray! ');
+                        });
+
+                        models.Photo.create({
+                            url : url + '/' + element,
+                            GalleryId : galleryId
+                        });
+                    });
                 });
-                req.flash('info', 'Added ' + photos.length + ' photos to new gallery');
+                req.flash('info', 'Added f' + photos.length + ' photos to new gallery');
             }
-
-            var new_path;
-            photos.forEach(function(element, index){
-
-                resize_path = path.join(thumb, element);
-                new_path = path.join(upload_dir, element);
-
-                fs.renameSync(oldpath[index], new_path, function (err) {
-                    if (err) throw err;
-
-                });
-
-
-                gm(new_path)
-                .resize('800', '600', '^')
-                .gravity('Center')
-                .crop('800', '600')
-                .write(resize_path, function (err) {
-                    if (!err) console.log(' hooray! ');
-                });
-
-
-                models.Photo.create({
-                    url : url + '/' + element,
-                    GalleryId : galleryId
-                });
-            });
 
             res.redirect('/dashboard/upload');
 

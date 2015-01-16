@@ -1,0 +1,99 @@
+/*
+ *  Background
+ */
+
+ #slideshow {
+  position: fixed;
+  display: block;
+  overflow: hidden;
+  width: 100%;
+  height: 100%;
+  background-color: #000;
+  -webkit-filter: brightness(0.8);
+  -moz-filter: brightness(0.8);
+  -o-filter: brightness(0.8);
+  -ms-filter: brightness(0.8);
+  filter: brightness(0.8);
+}
+
+#slideshow .slide {
+  position: fixed;
+  opacity: 0;
+}
+#slideshow .slide.show {
+  opacity: 1;
+  position: fixed;
+}
+#slideshow .slide.animation {
+  -webkit-animation: imageAnimation 8s linear;
+  -moz-animation: imageAnimation 8s linear;
+  -o-animation: imageAnimation 8s linear;
+  -ms-animation: imageAnimation 8s linear;
+  animation: imageAnimation 8s linear;
+}
+
+#slideshow .slide.show,
+#slideshow .slide {
+  transition: 1.4s opacity, -webkit-animation, animation;
+  background-repeat: no-repeat;
+  background-position: center center;
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
+  height: 100%;
+  width: 100%;
+  background-color: #000;
+  overflow: hidden;
+  -webkit-filter: blur(10px);
+  -moz-filter: blur(10px);
+  -o-filter: blur(10px);
+  -ms-filter: blur(10px);
+  filter: blur(10px);
+}
+
+@-webkit-keyframes imageAnimation {
+  0% {
+      -webkit-animation-timing-function: ease-in;
+      -webkit-transform: scale(1.0);
+  }
+  100% {
+      -webkit-transform: scale(1.2);
+  }
+}
+@-moz-keyframes imageAnimation {
+  0% {
+      -webkit-animation-timing-function: ease-in;
+      -webkit-transform: scale(1.0);
+  }
+  100% {
+      -webkit-transform: scale(1.2);
+  }
+}
+@-o-keyframes imageAnimation {
+  0% {
+      -webkit-animation-timing-function: ease-in;
+      -webkit-transform: scale(1.0);
+  }
+  100% {
+      -webkit-transform: scale(1.2);
+  }
+}
+@-ms-keyframes imageAnimation {
+  0% {
+      -webkit-animation-timing-function: ease-in;
+      -webkit-transform: scale(1.0);
+  }
+  100% {
+      -webkit-transform: scale(1.2);
+  }
+}
+@keyframes imageAnimation {
+  0% {
+      -webkit-animation-timing-function: ease-in;
+      -webkit-transform: scale(1.0);
+  }
+  100% {
+      -webkit-transform: scale(1.2);
+  }
+}

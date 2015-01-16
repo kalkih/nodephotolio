@@ -14,9 +14,25 @@ router.get('/', function(req, res) {
                 gallery['dataValues']['url'] = '/gallery/' + gallery['dataValues']['country'] + '/' + gallery['dataValues']['year'] + '/' + gallery['dataValues']['month'];
             }
 
-        });
+            models.Photo.find({
+                where : {
+                    GalleryId : gallery.id
+                }
+            }).then(function(photo) {
+                if (photo['dataValues']['url']) {
+                    gallery['dataValues']['thumb'] = "/thumb" + photo['dataValues']['url'];
+                    gallery['dataValues']['cover'] = photo['dataValues']['url'];
+                } else {
+                    gallery['dataValues']['thumb'] = "/placeholder/thumb.png";
+                    gallery['dataValues']['cover'] = "/placeholder/cover.png";
+                }
 
-        res.render('gallery/gallery', { title: 'Gallery', galleries: galleries, messages: req.flash() });
+                if (index == galleries.length -1) {
+                    res.render('gallery/gallery', { title: 'Gallery', header: galleries[0]['dataValues']['cover'], galleries: galleries, messages: req.flash(), session: req.session });
+                };
+            });
+
+        });
 
     });
 });
@@ -37,7 +53,7 @@ router.get('/:country/:city/:year/:month', function(req, res) {
                 }
             }).then(function(photos) {
                 var title = gallery['dataValues']['city'] + ' ' + gallery['dataValues']['month'] + ' ' + gallery['dataValues']['year'];
-                res.render('gallery/specGallery', { title: title , gallery: gallery, photos: photos, messages: req.flash() });
+                res.render('gallery/specGallery', { title: title , gallery: gallery, photos: photos, messages: req.flash(), slideshow: photos, session: req.session });
             });
         };
 
@@ -61,7 +77,7 @@ router.get('/:country/:year/:month', function(req, res) {
                 }
             }).then(function(photos) {
                 var title = gallery['dataValues']['country'] + ' ' + gallery['dataValues']['month'] + ' ' + gallery['dataValues']['year'];
-                res.render('gallery/specGallery', { title: title , gallery: gallery, photos: photos, messages: req.flash() });
+                res.render('gallery/specGallery', { title: title , gallery: gallery, photos: photos, messages: req.flash(), slideshow: photos, session: req.session });
             });
         };
 

@@ -13,7 +13,6 @@ var models = require("./models");
 var routes = require('./routes/index');
 var login = require('./routes/login');
 var logout = require('./routes/logout');
-var photos = require('./routes/photos');
 var dashboard = require('./routes/dashboard');
 var gallery = require('./routes/gallery');
 
@@ -41,7 +40,6 @@ app.locals.appdata = require('./data.json');
 app.use('/', routes);
 app.use('/login', login);
 app.use('/logout', logout);
-app.use('/photos', photos);
 app.use('/dashboard', dashboard);
 app.use('/gallery', gallery);
 

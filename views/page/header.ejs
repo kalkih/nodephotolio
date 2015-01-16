@@ -1,40 +1,25 @@
-<nav class="navbar navbar-inverse navbar-fixed-top">
-  <div class="container-fluid">
-    <div class="navbar-header">
-      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
-        <span class="sr-only">Toggle navigation</span>
-        <span class="icon-bar"></span>
-        <span class="icon-bar"></span>
-        <span class="icon-bar"></span>
-      </button>
-      <a class="navbar-brand" href="/">[Name]</a>
-    </div>
-    <div id="navbar" class="navbar-collapse collapse">
-      <ul class="nav navbar-nav navbar-right">
-        <li><a href="/dashboard">Dashboard</a></li>
-        <li><a href="#">Settings</a></li>
-        <li><a href="#">Profile</a></li>
-        <li><a href="#">Help</a></li>
-      </ul>
-      <form class="navbar-form navbar-right">
-        <input type="text" class="form-control" placeholder="Search...">
-      </form>
-    </div>
-  </div>
-</nav>
+<% include /sidebar.ejs %>
+
+<a href="/">
+    <h1 class="title">
+        <%= appdata.site.title %>
+    </h1>
+</a>
+
+<div class="top"></div>
 
 <%if (typeof messages.error !== 'undefined') {%>
     <div class="error">
-        <%= messages.error %>
+        <span><%= messages.error %></span>
     </div>
 <%}%>
 <%if (typeof messages.info !== 'undefined') {%>
     <div class="info">
-        <%= messages.info %>
+        <span><%= messages.info %></span>
     </div>
 <%}%>
 <%if (typeof messages.success !== 'undefined') {%>
     <div class="success">
-        <%= messages.success %>
+        <span><%= messages.success %></span>
     </div>
 <%}%>
