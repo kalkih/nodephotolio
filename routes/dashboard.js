@@ -20,6 +20,11 @@ router.get('/', function(req, res) {
         limit: 4,
         order: 'createdAt DESC'
     }).then(function(galleries) {
+
+        if (!galleries[0]) {
+            res.render('dashboard/dashboard', { title: 'Dashboard', messages: req.flash(), latestGalleries: galleries, session: req.session });
+        };
+
         galleries.forEach(function(gallery, index){
             models.Photo.find({
                 where : {
