@@ -1,11 +1,11 @@
 @import url(http://fonts.googleapis.com/css?family=Bree+Serif);
 
 html, body {
-    font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
+    font-family: 'Bree Serif', serif;
     padding: 0;
     margin: 0;
     height: 100%;
-    background-color: #ccc;
+    background-color: #ccc !important;
     -webkit-user-select: none;
     -moz-user-select: none;
     -ms-user-select: none;
@@ -94,7 +94,7 @@ a:hover {
 
 .bottom {
   position: fixed;
-  z-index: 98;
+  z-index: 97;
   bottom: 0;
   background-color: #303030;
   background: -webkit-linear-gradient(rgba(0, 0, 0, 0), rgba(0, 0, 0, 1));
@@ -121,8 +121,12 @@ a:hover {
     float: none;
     margin: 0 auto;
 }
-.centered{
+.centered {
     margin: 0 auto;
+}
+
+.down-content {
+  padding-top: 70px;
 }
 
 /* Header */
@@ -362,7 +366,7 @@ background:#000  no-repeat scroll center center; cursor: pointer;}
   position: fixed;
   bottom: 20px;
   left: 20px;
-  z-index: 99;
+  z-index: 98;
   color: #fff;
   font-family: 'Bree Serif', serif;
   cursor: pointer;
@@ -373,7 +377,7 @@ background:#000  no-repeat scroll center center; cursor: pointer;}
   position: fixed;
   bottom: 20px;
   right: 20px;
-  z-index: 99;
+  z-index: 98;
   color: #fff;
   font-family: 'Bree Serif', serif;
   cursor: pointer;
@@ -459,13 +463,21 @@ background:#000  no-repeat scroll center center; cursor: pointer;}
 /* Login */
 
 .dashboard {
-  padding-top: 80px;
   background-color: #303030 !important;
 }
 
-.heading {
+.heading1 {
   color: #fff;
   font-family: 'Bree Serif', serif;
+}
+
+.heading {
+  font-family: 'Bree Serif', serif;
+  text-align: center;
+  color: #fff;
+  margin: 0;
+  padding-top: 20px;
+  padding-bottom: 40px;
 }
 
 .dashboard .item {

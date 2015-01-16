@@ -300,6 +300,19 @@
     text-align: center;
 }
 
+#sidebar .social .row {
+  border-bottom: 1px solid #212121;
+}
+
+#sidebar .social .login {
+    color: #5e5e5e !important;
+    transition: color 0.1s cubic-bezier(0.215, 0.61, 0.355, 1);
+}
+
+#sidebar .social .login:hover {
+  color: #ccc !important;
+}
+
 /*
 @media screen and (max-width: 480px) {
     #sidebar {
