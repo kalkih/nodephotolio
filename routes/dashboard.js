@@ -133,9 +133,8 @@ router.post('/upload', function(req, res) {
             }
         }).then(function(Gallery) {
             if (Gallery) {
-                console.log(Gallery.id);
                 galleryId = Gallery.id;
-                req.flash('info', 'Added ' + photos.length + ' photos to existing gallery');
+                req.flash('success', 'Added ' + photos.length + ' photos to existing gallery');
                 var new_path;
                 photos.forEach(function(element, index){
 
@@ -149,11 +148,11 @@ router.post('/upload', function(req, res) {
 
 
                     gm(new_path)
-                    .resize('800', '600', '^')
+                    .resize('400', '300', '^')
                     .gravity('Center')
-                    .crop('800', '600')
+                    .crop('400', '300')
                     .write(resize_path, function (err) {
-                        if (!err) console.log(' hooray! ');
+                        if (!err) console.log('Thumbnail created');
                     });
 
                     models.Photo.create({
@@ -183,11 +182,11 @@ router.post('/upload', function(req, res) {
 
 
                         gm(new_path)
-                        .resize('800', '600', '^')
+                        .resize('400', '300', '^')
                         .gravity('Center')
-                        .crop('800', '600')
+                        .crop('400', '300')
                         .write(resize_path, function (err) {
-                            if (!err) console.log(' hooray! ');
+                            if (!err) console.log('Thumbnail created');
                         });
 
                         models.Photo.create({
@@ -196,7 +195,7 @@ router.post('/upload', function(req, res) {
                         });
                     });
                 });
-                req.flash('info', 'Added f' + photos.length + ' photos to new gallery');
+                req.flash('success', 'Added ' + photos.length + ' photos to new gallery');
             }
 
             res.redirect('/dashboard/upload');
