@@ -1,10 +1,10 @@
 <!DOCTYPE html>
 <html>
 <% include ../page/head.ejs %></head>
-<body>
+<body class ="dashboard">
     <% include ../page/header.ejs %>
 
-    <div id="content" class="dashboard">
+    <div id="content" class="dashboard down-content">
 
     <div class="container">
         <div class="row">
@@ -23,19 +23,10 @@
 
                       <!-- Text input-->
                       <div class="control-group">
-                        <label class="control-label" for="country">Country</label>
+                        <label class="control-label" for="name">Name</label>
                         <div class="controls">
-                          <input id="country" name="country" type="text" placeholder="" class="input-medium" required="">
+                          <input id="name" name="name" type="text" placeholder="" class="input-medium" required="">
 
-                        </div>
-                      </div>
-
-                      <!-- Text input-->
-                      <div class="control-group">
-                        <label class="control-label" for="city">City</label>
-                        <div class="controls">
-                          <input id="city" name="city" type="text" placeholder="" class="input-medium">
-                          <p class="help-block">Optional</p>
                         </div>
                       </div>
 

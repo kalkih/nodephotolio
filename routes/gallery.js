@@ -14,11 +14,7 @@ router.get('/', function(req, res) {
         };
 
         galleries.forEach(function(gallery, index){
-            if (gallery['dataValues']['city']) {
-                gallery['dataValues']['url'] = '/gallery/' + gallery['dataValues']['country'] + '/' + gallery['dataValues']['city'] + '/' + gallery['dataValues']['year'] + '/' + gallery['dataValues']['month'];
-            } else {
-                gallery['dataValues']['url'] = '/gallery/' + gallery['dataValues']['country'] + '/' + gallery['dataValues']['year'] + '/' + gallery['dataValues']['month'];
-            }
+            gallery['dataValues']['url'] = '/gallery/' + gallery['dataValues']['name'] + '/' + gallery['dataValues']['year'] + '/' + gallery['dataValues']['month'];
 
             models.Photo.find({
                 where : {
@@ -32,8 +28,9 @@ router.get('/', function(req, res) {
                     gallery['dataValues']['thumb'] = '/images/placeholder/placeholder-thumb-grey.png';
                 }
 
+                var slideshow = [photo];
                 if (index == galleries.length -1) {
-                    res.render('gallery/gallery', { title: 'Gallery', header: galleries[0]['dataValues']['cover'], galleries: galleries, messages: req.flash(), session: req.session });
+                    res.render('gallery/gallery', { title: 'Gallery', header: galleries[0]['dataValues']['cover'], galleries: galleries, slideshow: slideshow, messages: req.flash(), session: req.session });
                 };
             });
 
@@ -42,11 +39,10 @@ router.get('/', function(req, res) {
     });
 });
 
-router.get('/:country/:city/:year/:month', function(req, res) {
+router.get('/:name/:year/:month', function(req, res) {
     models.Gallery.find({
         where : {
-            country : req.params['country'],
-            city : req.params['city'],
+            name : req.params['name'],
             year : req.params['year'],
             month : req.params['month']
         }
@@ -57,32 +53,9 @@ router.get('/:country/:city/:year/:month', function(req, res) {
                     GalleryId : gallery.id
                 }
             }).then(function(photos) {
-                var title = gallery['dataValues']['city'] + ' ' + gallery['dataValues']['month'] + ' ' + gallery['dataValues']['year'];
-                res.render('gallery/specGallery', { title: title , gallery: gallery, photos: photos, messages: req.flash(), slideshow: photos, session: req.session });
-            });
-        };
-
-    });
-
-});
-
-router.get('/:country/:year/:month', function(req, res) {
-    models.Gallery.find({
-        where : {
-            country : req.params['country'],
-            city : "",
-            year : req.params['year'],
-            month : req.params['month']
-        }
-    }).then(function(gallery) {
-        if (gallery) {
-            models.Photo.findAll({
-                where : {
-                    GalleryId : gallery.id
-                }
-            }).then(function(photos) {
-                var title = gallery['dataValues']['country'] + ' ' + gallery['dataValues']['month'] + ' ' + gallery['dataValues']['year'];
-                res.render('gallery/specGallery', { title: title , gallery: gallery, photos: photos, messages: req.flash(), slideshow: photos, session: req.session });
+                var slideshow = [photos[0]];
+                var title = gallery['dataValues']['name'] + ' ' + gallery['dataValues']['month'] + ' ' + gallery['dataValues']['year'];
+                res.render('gallery/specGallery', { title: title , gallery: gallery, photos: photos, messages: req.flash(), slideshow: slideshow, session: req.session });
             });
         };
 

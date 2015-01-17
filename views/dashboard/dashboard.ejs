@@ -22,11 +22,7 @@
                                 <div class="col-xs-12 col-sm-6 col-md-3 item">
 
                                     <div class="item-container">
-                                        <% if (gallery['dataValues']['city']) { %>
-                                            <h4 class="location"><%= gallery['dataValues']['city'] %></h4>
-                                        <% } else { %>
-                                            <h4 class="location"><%= gallery['dataValues']['country'] %></h4>
-                                        <% } %>
+                                        <h4 class="name"><%= gallery['dataValues']['name'] %></h4>
                                         <h5 class="date"><%= gallery['dataValues']['month'] %> <%= gallery['dataValues']['year'] %></h5>
                                         <img src="<%= gallery['dataValues']['thumb'] %>" class="img-responsive thumb" alt="Gallery thumbnail" width="100%">
 

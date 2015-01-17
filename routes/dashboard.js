@@ -38,14 +38,8 @@ router.get('/', function(req, res) {
                 } else {
                     gallery['dataValues']['thumb'] = '/images/placeholder/placeholder-thumb-grey.png';
                 }
+                gallery['dataValues']['url'] = '/gallery/' + gallery['dataValues']['name'] + '/' + gallery['dataValues']['year'] + '/' + gallery['dataValues']['month'];
 
-                if (gallery['dataValues']['city']) {
-                    gallery['dataValues']['name'] = gallery['dataValues']['city'] + ' ' + gallery['dataValues']['month'] + ' ' + gallery['dataValues']['year'];
-                    gallery['dataValues']['url'] = '/gallery/' + gallery['dataValues']['country'] + '/' + gallery['dataValues']['city'] + '/' + gallery['dataValues']['year'] + '/' + gallery['dataValues']['month'];
-                } else{
-                    gallery['dataValues']['name'] = gallery['dataValues']['country'] + ' ' + gallery['dataValues']['month'] + ' ' + gallery['dataValues']['year'];
-                    gallery['dataValues']['url'] = '/gallery/' + gallery['dataValues']['country'] + '/' + gallery['dataValues']['year'] + '/' + gallery['dataValues']['month'];
-                }
                 if (index == galleries.length -1) {
                     res.render('dashboard/dashboard', { title: 'Dashboard', messages: req.flash(), latestGalleries: galleries, session: req.session });
                 };
@@ -101,15 +95,9 @@ router.post('/upload', function(req, res) {
             filename = old_path.substr(index);
             oldpath.push(old_path);
 
-            if (fields[1] == 'undefined') {
-                upload_dir = path.join(process.env.PWD, '/public/photos/' + fields[0] + '/' + fields[2] + '/' + fields[3]);
-                url = '/photos/' + fields[0] + '/' + fields[2] + '/' + fields[3];
-                thumb = path.join(process.env.PWD, '/public/thumb/photos' + fields[0] + '/' + fields[2] + '/' + fields[3]);
-            } else {
-                upload_dir = path.join(process.env.PWD, '/public/photos/' + fields[0] + '/' + fields[1] + '/' + fields[2] + '/' + fields[3]);
-                url = '/photos/' + fields[0] + '/' + fields[1] + '/' + fields[2] + '/' + fields[3];
-                thumb = path.join(process.env.PWD, '/public/thumb/photos/' + fields[0] + '/' + fields[1] + '/' + fields[2] + '/' + fields[3]);
-            };
+            upload_dir = path.join(process.env.PWD, '/public/photos/' + fields[0] + '/' + fields[1] + '/' + fields[2]);
+            url = '/photos/' + fields[0] + '/' + fields[1] + '/' + fields[2];
+            thumb = path.join(process.env.PWD, '/public/thumb/photos/' + fields[0] + '/' + fields[1] + '/' + fields[2]);
 
             if (!fs.exists(upload_dir)){
                 fs.mkdirpSync(upload_dir);
@@ -126,10 +114,9 @@ router.post('/upload', function(req, res) {
 
         models.Gallery.find({
             where : {
-                country : fields[0],
-                city : fields[1],
-                year : fields[2],
-                month : fields[3],
+                name : fields[0],
+                year : fields[1],
+                month : fields[2],
             }
         }).then(function(Gallery) {
             if (Gallery) {
@@ -162,10 +149,9 @@ router.post('/upload', function(req, res) {
                 });
             } else {
                 models.Gallery.create({
-                    country : fields[0],
-                    city : fields[1],
-                    year : fields[2],
-                    month : fields[3],
+                    name : fields[0],
+                    year : fields[1],
+                    month : fields[2],
                 }).then (function(Gallery) {
                     galleryId = Gallery.id;
 

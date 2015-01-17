@@ -9,7 +9,12 @@
     <div id="content" class="gallery gallerySpec">
         <div class="container-fluid">
             <div class="col-sm-12 col-md-12 main">
-                <h1 class="gallery-name"><%= title %></h1>
+                <h1 class="gallery-name">
+                    <span class="big"><%= gallery['dataValues']['name'] %></span>
+                    <br>
+                    <span class="small"><%= gallery['dataValues']['month'] %></span>
+                    <span class="small"><%= gallery['dataValues']['year'] %></span>
+                </h1>
                 <% if (!photos[0]) { %>
                     <h1 class="gallery-name">Nothing here yet ...</h1>
                 <% }; %>

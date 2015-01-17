@@ -79,7 +79,7 @@ a:hover {
 
 .top {
   position: fixed;
-  z-index: 98;
+  z-index: 97;
   top: 0;
   background-color: #303030;
   background: -webkit-linear-gradient(rgba(0, 0, 0, 1), rgba(0, 0, 0, 0));
@@ -245,6 +245,16 @@ background:#000  no-repeat scroll center center; cursor: pointer;}
   padding-bottom: 40px;
 }
 
+.gallery-name .big{
+  font-size: 1.2em;
+}
+
+.gallery-name .small{
+  font-size: .8em;
+  color: #fff;
+  opacity: .6;
+}
+
 .gallery-name a{
   transition: all .2s;
 }
@@ -323,7 +333,7 @@ background:#000  no-repeat scroll center center; cursor: pointer;}
   filter: none;
 }
 
-.gallery .item-container:hover .location,
+.gallery .item-container:hover .name,
 .gallery .item-container:hover .date {
   opacity: 1;
 }
@@ -333,7 +343,7 @@ background:#000  no-repeat scroll center center; cursor: pointer;}
   transition: -webkit-filter .4s, -moz-filter, -o-filter, -ms-filter, filter;
 }
 
-.gallery .item .location {
+.gallery .item .name {
   z-index: 96;
   top: 40%;
 }
@@ -343,7 +353,7 @@ background:#000  no-repeat scroll center center; cursor: pointer;}
 }
 
 .gallery .item .date,
-.gallery .item .location {
+.gallery .item .name {
   transition: opacity .2s;
   opacity: 0;
   position: absolute;
@@ -357,7 +367,7 @@ background:#000  no-repeat scroll center center; cursor: pointer;}
 
 @media screen and (max-width: 992px) {
   .gallery .item .date,
-  .gallery .item .location {
+  .gallery .item .name {
     font-size: 4vw;
   }
 }

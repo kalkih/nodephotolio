@@ -2,8 +2,7 @@
 
 module.exports = function(sequelize, DataTypes) {
     var Gallery = sequelize.define("Gallery", {
-    country: DataTypes.STRING,
-    city: DataTypes.STRING,
+    name: DataTypes.STRING,
     year: DataTypes.INTEGER,
     month: DataTypes.STRING
     }, {
