@@ -3,7 +3,7 @@
     <% include ../page/head.ejs %>
     <link rel="stylesheet" href="/stylesheets/background.css">
 </head>
-<body class="mobile">
+<body class="mobile dark-bg">
     <% include ../page/header.ejs %>
     <% include ../page/background.ejs %>
     <div id="content" class="gallery gallerySpec">
@@ -17,16 +17,17 @@
                 </h1>
                 <% if (!photos[0]) { %>
                     <h1 class="gallery-name">Nothing here yet ...</h1>
-                <% }; %>
-                <div class="row">
-                    <% photos.forEach(function(photo, index) { %>
-                            <div class="col-xs-12 col-sm-6 col-md-3 item">
-                                <div class="item-container">
-                                    <img src="/thumb<%= photo['dataValues']['url'] %>" class="img-responsive thumb" alt="photo thumbnail" width="100%">
+                <% } else { %>
+                    <div class="row transparent-bg">
+                        <% photos.forEach(function(photo, index) { %>
+                                <div class="col-xs-12 col-sm-6 col-md-3 item">
+                                    <div class="item-container">
+                                        <img src="/thumb<%= photo['dataValues']['url'] %>" class="img-responsive thumb" alt="photo thumbnail" width="100%">
+                                    </div>
                                 </div>
-                            </div>
-                    <% }); %>
-                </div>
+                        <% }); %>
+                    </div>
+                <% }; %>
             </div>
         </div>
     </div>

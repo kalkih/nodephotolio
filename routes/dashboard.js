@@ -11,11 +11,13 @@ var methodOverride = require('method-override')
 
 router.get('/', function(req, res) {
 
+    /*
     if (!req.session.user) {
         req.flash('error', 'Login required');
         res.redirect('/login');
         return;
     }
+    */
 
     models.Gallery.findAll({
         limit: 8,
@@ -222,6 +224,37 @@ router.delete('/:name/:year/:month', function(req, res) {
             res.redirect('/gallery');
         });
     });
+
+});
+
+router.post('/gallery/new', function(req, res) {
+
+    /*
+    if (!req.session.user) {
+        req.flash('error', 'Login required');
+        res.redirect('/login');
+        return;
+    }
+    */
+
+    models.Gallery.findOrCreate({
+        where : {
+            name : req.body.name,
+            year : req.body.year,
+            month : req.body.month
+        }
+    }).spread(function(gallery, created) {
+        gallery = gallery.values;
+        if (created) {
+            req.flash('success', 'New gallery created!');
+        } else {
+            req.flash('info', 'Gallery already exists!');
+        };
+
+        res.redirect('/gallery/' + gallery.name + '/' + gallery.year + '/' + gallery.month);
+    });
+
+
 
 });
 

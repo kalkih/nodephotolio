@@ -15,6 +15,7 @@
                 <% } %>
             <% }); %>
         </div>
+        <div class="header-overlay"></div>
         <div class="header-content">
             <h1><%= title %></h1>
             <% if (typeof subtitle != 'undefined') { %>
@@ -48,8 +49,8 @@
                                         <h4 class="name"><%= gallery['dataValues']['name'] %></h4>
                                         <h5 class="date"><%= gallery['dataValues']['month'] %> <%= gallery['dataValues']['year'] %></h5>
                                         <img src="<%= gallery['dataValues']['thumb'] %>" class="img-responsive thumb" alt="Gallery thumbnail" width="100%">
-
                                     </div>
+
                                 </div>
                             </a>
                         <% }; %>

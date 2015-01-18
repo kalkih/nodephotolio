@@ -4,6 +4,7 @@
         <% slideshow.forEach(function(slide, index){ %>
             <div class="slide" style="background-image: url(/thumb<%= slide['dataValues']['url'] %>);"></div>
         <% }); %>
+        <div class="bg-overlay"></div>
     <% } %>
 </div>
 

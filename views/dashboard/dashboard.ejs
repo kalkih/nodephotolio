@@ -3,7 +3,7 @@
     <% include ../page/head.ejs %>
     <link rel="stylesheet" href="/stylesheets/background.css">
 </head>
-<body class="dashboard mobile grey">
+<body class="dashboard mobile dark-bg">
 
     <% include ../page/header.ejs %>
     <% include ../page/background.ejs %>
@@ -12,11 +12,11 @@
 
         <div class="container-fluid">
             <div class="col-sm-12 col-md-12 main text-center">
-            <h1 class="heading">Latest Galleries</h1>
+                <h1 class="heading">Latest Galleries</h1>
                 <% if (!latestGalleries[0]) { %>
                     <h1 class="heading text-center">Nothing here yet ...</h1>
                 <% };%>
-                <div class="row">
+                <div class="row transparent-bg">
                     <% latestGalleries.forEach(function(gallery, index) { %>
                         <% if (gallery['dataValues']['thumb']) { %>
                             <a href="<%= gallery['dataValues']['url'] %>">
@@ -39,7 +39,7 @@
         </div>
     </div>
     <div class="admin-center text-centered">
-        <a class="new-text" href="/dashboard/upload">
+        <a class="new-text">
             <i class="fa fa-plus"></i> <span>New gallery</span>
         </a>
     </div>

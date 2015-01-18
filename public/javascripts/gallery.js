@@ -36,8 +36,6 @@ $(document).ready(function(){
 
     // admin
 
-
-
     var removeClick = function(){
         $('.upload-text').unbind();
         $('.remove-text').click(function() {

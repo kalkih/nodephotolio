@@ -53,7 +53,12 @@ router.get('/:name/:year/:month', function(req, res) {
                     GalleryId : gallery.id
                 }
             }).then(function(photos) {
-                var slideshow = [photos[0]];
+                var slideshow;
+                if (photos[0]) {
+                    slideshow = [photos[0]];
+                };
+
+                console.log(photos[0]);
                 var title = gallery['dataValues']['name'] + ' ' + gallery['dataValues']['month'] + ' ' + gallery['dataValues']['year'];
                 res.render('gallery/specGallery', { title: title , gallery: gallery, photos: photos, messages: req.flash(), slideshow: slideshow, session: req.session });
             });
