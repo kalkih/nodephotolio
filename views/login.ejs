@@ -1,48 +1,33 @@
 <!DOCTYPE html>
 <html>
-  <% include page/head.ejs %>
-  </head>
-<body class="dashboard">
+    <% include page/head.ejs %>
+    <link rel="stylesheet" href="/stylesheets/background.css">
+</head>
+<body class="dashboard mobile grey">
     <% include page/header.ejs %>
+    <% include page/background.ejs %>
 
     <div id="content" class="dashboard down-content">
 
-    <div class="container">
-        <div class="row">
-            <div class="col-centered" style="max-width: 200px">
+        <div class="container">
+            <div class="form-div">
+                <form class="form" id="login-form" method="POST" action="/login">
 
+                    <p class="name">
+                        <input name="username" type="text" class="input" placeholder="Username" id="username" required=""/>
+                    </p>
 
-                <form class="form-horizontal" method="POST" action="/login">
-                    <h1>Login</h1>
-                    <fieldset>
+                    <p class="email">
+                        <input name="password" type="password" class="input" id="password" placeholder="Password" required=""/>
+                    </p>
 
-                        <div class="control-group">
-                              <label class="control-label" for="username"></label>
-                              <div class="controls">
-                                <input id="username" name="username" type="text" placeholder="Username" class="input-xlarge" required="">
+                    <div class="submit">
+                        <input type="submit" name="login" value="LOGIN" class="button-blue" id="login"/>
+                    <div class="ease"></div>
 
-                              </div>
-                        </div>
-
-                        <div class="control-group">
-                              <label class="control-label" for="password"></label>
-                              <div class="controls">
-                                <input id="password" name="password" type="password" placeholder="Password" class="input-xlarge" required="">
-                              </div>
-                        </div>
-
-                        <div class="control-group">
-                              <label class="control-label" for="login"></label>
-                              <div class="controls">
-                                <button id="login" name="login" class="btn btn-primary">Login</button>
-                              </div>
-                        </div>
-
-                    </fieldset>
                 </form>
             </div>
         </div>
-    </div>
     </div>
 
     <% include page/jsdefaults.ejs %>

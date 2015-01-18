@@ -1,8 +1,6 @@
 $(document).ready(function(){
     'use strict';
 
-
-
     var items = $('.gallery .item-container'),
         totalItems = items.length;
 
@@ -34,5 +32,39 @@ $(document).ready(function(){
             });
 
     });
+
+
+    // admin
+
+
+
+    var removeClick = function(){
+        $('.upload-text').unbind();
+        $('.remove-text').click(function() {
+            $('.remove-text span').html('No');
+            $('.remove-text').addClass('white red-hover no');
+            $('.upload-text').html('<i class="fa fa-check"></i> <span>Yes</span>');
+            $('.upload-text').addClass('white green-hover yes');
+            console.log('.remove-text span');
+            //$('.remove-text').click(function() {
+            //    $("#remove-form").submit();
+            //    console.log('delete');
+            //});
+
+            $('.remove-text.no').click(function() {
+                $('.remove-text span').html('Remove');
+                $('.remove-text').removeClass('white red-hover no');
+                $('.upload-text').html('<i class="fa fa-upload"></i> <span>Upload</span>');
+                $('.upload-text').removeClass('white green-hover yes');
+                removeClick();
+            });
+
+            $('.upload-text.yes').click(function(event) {
+                event.preventDefault();
+                $('#remove-form').submit();
+            });
+        });
+    };
+    removeClick();
 
 });

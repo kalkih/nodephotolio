@@ -1,10 +1,12 @@
 <!DOCTYPE html>
 <html>
     <% include ../page/head.ejs %>
+    <link rel="stylesheet" href="/stylesheets/background.css">
 </head>
-<body class="dashboard">
+<body class="dashboard mobile grey">
 
     <% include ../page/header.ejs %>
+    <% include ../page/background.ejs %>
 
     <div id="content" class="dashboard down-content gallery">
 
@@ -34,12 +36,14 @@
                 </div>
             </div>
             <div style="clear: both;"></div>
-            <div class="col-centered text-center" style="max-width: 140px; margin-bottom: 100px">
-                <a href="/dashboard/upload"><div class="button"><i class="fa fa-upload"></i><br><span>Upload</span></div></a>
-            </div>
         </div>
-
     </div>
+    <div class="admin-center text-centered">
+        <a class="new-text" href="/dashboard/upload">
+            <i class="fa fa-plus"></i> <span>New gallery</span>
+        </a>
+    </div>
+    <div class="bottom"></div>
 
     <% include ../page/jsdefaults.ejs %>
 

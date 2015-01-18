@@ -1,0 +1,131 @@
+
+form {
+  background: 0 !important;
+  border: none !important;
+}
+
+.form-div {
+  background-color:rgba(255,255,255,.2);
+  padding-left:35px;
+  padding-right:35px;
+  padding-top:35px;
+  padding-bottom:50px;
+  width: 450px;
+  float: left;
+  left: 50%;
+  position: absolute;
+  margin-top:30px;
+  margin-left: -260px;
+}
+
+.input {
+  color:#3c3c3c;
+  font-family: Helvetica, Arial, sans-serif;
+  font-weight:500;
+  font-size: 18px;
+  border-radius: 0;
+  line-height: 22px;
+  background-color: #fbfbfb;
+  padding: 13px 13px 13px 54px;
+  margin-bottom: 10px;
+  width:100%;
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  -ms-box-sizing: border-box;
+  box-sizing: border-box;
+  border: 3px solid rgba(0,0,0,0);
+}
+
+.input:focus{
+  background: #fff;
+  box-shadow: 0;
+  border: 3px solid #3498db;
+  color: #3498db;
+  outline: none;
+  padding: 13px 13px 13px 54px;
+}
+
+.focused{
+  color:#30aed6;
+  border:#30aed6 solid 3px;
+}
+
+textarea {
+    width: 100%;
+    height: 150px;
+    line-height: 150%;
+    resize:vertical;
+}
+
+input:hover, textarea:hover,
+input:focus, textarea:focus {
+  background-color:white;
+}
+
+#username{
+  background-image: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAADIAAAAyCAYAAAAeP4ixAAACg0lEQVRoQ+2Zi1HDMAyG2w3YgDIBMAHtBMAEhAmACSgTABMQJgAmoEwATEDYgA1AH1f30l4aW7ZMuVx05wvUev2SbCX2cGBPI1F5KONIxpaMvbmJN3l+yXiU8SSjsjQ9NFQGgOs5gBC1ALqwAmQF5EwcugnxvoHnXH67jZRdiFkAuRNtRaIjpcifpuhIBUIWyIYFkRWyE0UpQFjMD1FW1wsdyxRrR00pQD7E2khtsV2gkumdGJ2xQCgBdqgcxFoptYpjgbyKIdcftDZ9/PSbfR/T6nwMEMqJsspJlBdlFkwxQMai/TnYQhzjRMRmGtEYIDnXh/Odjq9qsDFApmLkUhOtCN4rkcFOMMUA6UxGOrNGOrNrUbfs9bvBBaxjfBd2dY+KWSO4lXOd/GlnB0wlY1sXbC/3p3BQumqKzQiGOvP2C5hOfI+49Jfyx4m6FpYF7uXfIkVHSmnV7aYsfvXrSBNgKyDoZpFSahwFhRBZmMqoQph9PJZAnC0AsRG4cy3Xb+gP7lyLz1kTAM5oDiC+4GWZ74FkCWuC0j4jCcHLItpnpCGsB/Kbu0aoXyessrrrBfd8sUhRSkZwnF7Bt8M40ZmZyAOM/hIFTAuEZsehdTGPfqL/jeI0zVIGh9rBTTMUCBHn5CQ18lrgZIoTFZ6t5ANCrXP/QQltkig5vhzJViO1ASlEgoNqwPwHAgRvymWTM+uAWNxC5QIPELKzRKtAiD6XN+NcXhjpnYkeLoUWpVYHAggOp9VHMUbOadWwXU8cmDoQQPz3TKyCZRMgMwMHxPIQQRvZVP7fS1SAkIXc9x2pzvrkJwDJcanpM2w9XwHk21rrJvT1QDYR9TabfUb6jGSKwA8yamVMHFktwQAAAABJRU5ErkJggg==);
+  background-size: 30px 30px;
+  background-position: 11px 8px;
+  background-repeat: no-repeat;
+}
+
+#username:focus{
+  background-image: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAADIAAAAyCAYAAAAeP4ixAAACg0lEQVRoQ+2Zi1HDMAyG2w3YgDIBMAHtBMAEhAmACSgTABMQJgAmoEwATEDYgA1AH1f30l4aW7ZMuVx05wvUev2SbCX2cGBPI1F5KONIxpaMvbmJN3l+yXiU8SSjsjQ9NFQGgOs5gBC1ALqwAmQF5EwcugnxvoHnXH67jZRdiFkAuRNtRaIjpcifpuhIBUIWyIYFkRWyE0UpQFjMD1FW1wsdyxRrR00pQD7E2khtsV2gkumdGJ2xQCgBdqgcxFoptYpjgbyKIdcftDZ9/PSbfR/T6nwMEMqJsspJlBdlFkwxQMai/TnYQhzjRMRmGtEYIDnXh/Odjq9qsDFApmLkUhOtCN4rkcFOMMUA6UxGOrNGOrNrUbfs9bvBBaxjfBd2dY+KWSO4lXOd/GlnB0wlY1sXbC/3p3BQumqKzQiGOvP2C5hOfI+49Jfyx4m6FpYF7uXfIkVHSmnV7aYsfvXrSBNgKyDoZpFSahwFhRBZmMqoQph9PJZAnC0AsRG4cy3Xb+gP7lyLz1kTAM5oDiC+4GWZ74FkCWuC0j4jCcHLItpnpCGsB/Kbu0aoXyessrrrBfd8sUhRSkZwnF7Bt8M40ZmZyAOM/hIFTAuEZsehdTGPfqL/jeI0zVIGh9rBTTMUCBHn5CQ18lrgZIoTFZ6t5ANCrXP/QQltkig5vhzJViO1ASlEgoNqwPwHAgRvymWTM+uAWNxC5QIPELKzRKtAiD6XN+NcXhjpnYkeLoUWpVYHAggOp9VHMUbOadWwXU8cmDoQQPz3TKyCZRMgMwMHxPIQQRvZVP7fS1SAkIXc9x2pzvrkJwDJcanpM2w9XwHk21rrJvT1QDYR9TabfUb6jGSKwA8yamVMHFktwQAAAABJRU5ErkJggg==);
+  background-size: 30px 30px;
+  background-position: 8px 5px;
+  background-position: 11px 8px;
+  background-repeat: no-repeat;
+}
+
+#password{
+  background-image: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAADIAAAAyCAYAAAAeP4ixAAACkklEQVRoQ+2Zi03DMBCG2wmACUg3gAkoEwATUCYAJqBMAExANwAmoEwAGxAmACaA+yRHsoxTnx1Tl5KTTk0aP/7/Hj47GQ7WRIZrwmPwG0Q2xTgHooeiXFfGWLX8fojeiz6Y62x2zEkEwBeiEyW6mbS7FIVgZ8lF5FSQXCeiOZF+kOokOYjcRnihDSxEIJQsXYngBbzhyqf8QS68GOX5jlFyZ8PT50b+O0tl0oUIgO48ExP3ECSxfcICAGDyyZUjY4BoPl2IvMpslTNjDJCJ9CUsbanlZhTNQjqkEsGiV86EKUnrI5MyTjKRZyFBzDfyJBfjFEtKn7nontWXvNqNHSvFI4QTYWVLTEi5GH25tiWN2nLMyzGFCJZ/tEZjhSKBuwig7ZVs33hKPWYKETc/uoRVA9QNr3N5EFVgU4hMZRJ76fwNIizhzKOWf0uERHc3hqwyyRXZmJwwslfBmdxHbSi1HoEAxYtEX6aQO9SVOjSplohbN0Lj5nyuqisaIhPjjZzgYscKVnsNEeL1OHbmzO2DO2MNEeLU3kJkxqgaLrjE90RUdszXqPeIbcs+R/JF1qBoaLG9Z+tCQUPYgrAV8b14CHEuRuTNAHcPR5xbILYdQu48L0Zk0cFoLCDtg5mGUzEiofr0pUFvtSlCpBYAowBQ36ukRV2KEAHQopcH5Mn7X/AIGBdt8li5fK9ZV9IjgJqKcsqzhdMl/8dKsdBqgJIvdh2pYhmY9sWJJOL+0a0nYptkLjf9wSpTbPWhtWqhxeds3tq3SmhP1NQD32eyTFGjGib4LlhDhHMEL+hKCns3alInj9DZ96ltWcRUnxg0HmkAj+ViIlotiQEemInONfPFENGMV6xNT6SY6VsmXhuPfAPSQIszh1irJwAAAABJRU5ErkJggg==);
+  background-size: 30px 30px;
+  background-position: 11px 8px;
+  background-repeat: no-repeat;
+}
+
+#password:focus{
+  background-image: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAADIAAAAyCAYAAAAeP4ixAAACkklEQVRoQ+2Zi03DMBCG2wmACUg3gAkoEwATUCYAJqBMAExANwAmoEwAGxAmACaA+yRHsoxTnx1Tl5KTTk0aP/7/Hj47GQ7WRIZrwmPwG0Q2xTgHooeiXFfGWLX8fojeiz6Y62x2zEkEwBeiEyW6mbS7FIVgZ8lF5FSQXCeiOZF+kOokOYjcRnihDSxEIJQsXYngBbzhyqf8QS68GOX5jlFyZ8PT50b+O0tl0oUIgO48ExP3ECSxfcICAGDyyZUjY4BoPl2IvMpslTNjDJCJ9CUsbanlZhTNQjqkEsGiV86EKUnrI5MyTjKRZyFBzDfyJBfjFEtKn7nontWXvNqNHSvFI4QTYWVLTEi5GH25tiWN2nLMyzGFCJZ/tEZjhSKBuwig7ZVs33hKPWYKETc/uoRVA9QNr3N5EFVgU4hMZRJ76fwNIizhzKOWf0uERHc3hqwyyRXZmJwwslfBmdxHbSi1HoEAxYtEX6aQO9SVOjSplohbN0Lj5nyuqisaIhPjjZzgYscKVnsNEeL1OHbmzO2DO2MNEeLU3kJkxqgaLrjE90RUdszXqPeIbcs+R/JF1qBoaLG9Z+tCQUPYgrAV8b14CHEuRuTNAHcPR5xbILYdQu48L0Zk0cFoLCDtg5mGUzEiofr0pUFvtSlCpBYAowBQ36ukRV2KEAHQopcH5Mn7X/AIGBdt8li5fK9ZV9IjgJqKcsqzhdMl/8dKsdBqgJIvdh2pYhmY9sWJJOL+0a0nYptkLjf9wSpTbPWhtWqhxeds3tq3SmhP1NQD32eyTFGjGib4LlhDhHMEL+hKCns3alInj9DZ96ltWcRUnxg0HmkAj+ViIlotiQEemInONfPFENGMV6xNT6SY6VsmXhuPfAPSQIszh1irJwAAAABJRU5ErkJggg==);
+  background-size: 30px 30px;
+  background-position: 8px 5px;
+  background-position: 11px 8px;
+  background-repeat: no-repeat;
+}
+
+.button-blue{
+  font-family: 'Montserrat', Arial, Helvetica, sans-serif;
+  float:left;
+  width: 100%;
+  border: none !important;
+  cursor:pointer;
+  background-color: #3498db;
+  color:white;
+  font-size:24px;
+  padding-top:22px;
+  padding-bottom:22px;
+  -webkit-transition: all 0.3s;
+  -moz-transition: all 0.3s;
+  transition: all 0.3s;
+  margin-top:-4px;
+  font-weight:700;
+}
+
+.button-blue:hover{
+  background-color: rgba(255,255,255,1);
+  color: #0493bd;
+}
+
+.submit:hover {
+  color: #3498db;
+}
+
+@media only screen and (max-width: 580px) {
+  .form-div{
+    left: 3%;
+    margin-right: 3%;
+    width: 88%;
+    margin-left: 0;
+    padding-left: 3%;
+    padding-right: 3%;
+  }
+}

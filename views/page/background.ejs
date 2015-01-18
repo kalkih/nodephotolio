@@ -1,8 +1,10 @@
 
 <div id="slideshow">
-    <% slideshow.forEach(function(slide, index){ %>
-        <div class="slide" style="background-image: url(/thumb<%= slide['dataValues']['url'] %>);"></div>
-    <% }); %>
+    <% if (typeof slideshow !== 'undefined') { %>
+        <% slideshow.forEach(function(slide, index){ %>
+            <div class="slide" style="background-image: url(/thumb<%= slide['dataValues']['url'] %>);"></div>
+        <% }); %>
+    <% } %>
 </div>
 
 <script src="/javascripts/cover.js"></script>

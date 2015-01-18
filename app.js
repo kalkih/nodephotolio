@@ -8,6 +8,8 @@ var passwordHash = require('password-hash');
 var flash = require('connect-flash');
 var fs = require('fs-extra');
 
+var methodOverride = require('method-override')
+
 var models = require("./models");
 
 var routes = require('./routes/index');
@@ -34,6 +36,16 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(express.static(path.join(__dirname, 'public')));
 app.use(flash());
+
+app.use(bodyParser.urlencoded())
+app.use(methodOverride(function(req, res){
+  if (req.body && typeof req.body === 'object' && '_method' in req.body) {
+    // look in urlencoded POST bodies and delete it
+    var method = req.body._method
+    delete req.body._method
+    return method
+  }
+}))
 
 app.locals.appdata = require('./data.json');
 

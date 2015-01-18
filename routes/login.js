@@ -11,7 +11,18 @@ router.get('/', function(req, res) {
         return;
     }
 
-    res.render('login', { title: 'Login', messages: req.flash(), session: req.session });
+    models.Photo.findAll({limit : 1}).then(function(photo) {
+        if (!photo[0]) {
+            photo[0] = ['dataValues'];
+            photo[0]['dataValues'] = ['url'];
+            photo[0]['dataValues']['url'] = '/images/placeholder/placeholder-black.png';
+        }
+        console.log(photo[0]['dataValues']['url']);
+        var slideshow = [photo[0]];
+        res.render('login', { title: 'Login', slideshow : slideshow, messages: req.flash(), session: req.session });
+    });
+
+
 });
 
 router.post('/', function(req, res) {

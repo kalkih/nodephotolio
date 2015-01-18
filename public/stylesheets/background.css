@@ -14,6 +14,7 @@
   -o-filter: blur(10px) brightness(0.8);
   -ms-filter: blur(10px) brightness(0.8);
   filter: blur(10px) brightness(0.8);
+  z-index: -1;
 }
 
 #slideshow .slide {

@@ -1,16 +1,19 @@
 @import url(http://fonts.googleapis.com/css?family=Bree+Serif);
 
 html, body {
-    font-family: 'Bree Serif', serif;
+    font-family: 'Bree Serif', serif !important;
     padding: 0;
     margin: 0;
     height: 100%;
-    background-color: #ccc !important;
     -webkit-user-select: none;
     -moz-user-select: none;
     -ms-user-select: none;
     -o-user-select: none;
     user-select: none;
+}
+
+.grey {
+  background-color: #ccc !important;
 }
 
 .noscroll {
@@ -43,6 +46,10 @@ a:hover {
   color: #000;
 }
 
+#content {
+  z-index: 200 !important;
+}
+
 /*
  * Main content
  */
@@ -60,9 +67,6 @@ a:hover {
   margin-top: 0;
 }
 
-#content {
-  background-color: #ccc;
-}
 
 .title {
   position: fixed;
@@ -394,8 +398,23 @@ background:#000  no-repeat scroll center center; cursor: pointer;}
   font-size: 30px;
 }
 
+.admin-center {
+  position: fixed;
+  bottom: 20px;
+  left: 0;
+  right: 0;
+  z-index: 98;
+  color: #fff;
+  font-family: 'Bree Serif', serif;
+  cursor: pointer;
+  font-size: 30px;
+  margin: 0 auto;
+  text-align: center;
+}
+
 .remove-text,
-.upload-text {
+.upload-text,
+.new-text {
   transition: color .2s cubic-bezier(0.215, 0.61, 0.355, 1);
 }
 
@@ -403,7 +422,8 @@ background:#000  no-repeat scroll center center; cursor: pointer;}
   color: #E0645C !important;
 }
 
-.upload-text:hover {
+.upload-text:hover,
+.new-text:hover {
   color: #2DB6CF !important;
 }
 
@@ -473,7 +493,6 @@ background:#000  no-repeat scroll center center; cursor: pointer;}
 /* Login */
 
 .dashboard {
-  background-color: #303030 !important;
 }
 
 .heading1 {
@@ -518,7 +537,7 @@ background:#000  no-repeat scroll center center; cursor: pointer;}
   font-size: 1em;
 }
 
-.dashboard .button {
+.custom-button {
   color: #fff;
   background-color: #ccc;
   padding: 10px 10px;
@@ -527,7 +546,7 @@ background:#000  no-repeat scroll center center; cursor: pointer;}
 
 }
 
-.dashboard .button:hover {
+.custom-button:hover {
   background-color: #E0645C;
 
 }
@@ -535,7 +554,7 @@ background:#000  no-repeat scroll center center; cursor: pointer;}
 
 /* Form */
 
-form {
+.dashboard form {
   background-color: #fff;
   margin: 0;
   padding: 10px;
@@ -561,6 +580,7 @@ form {
   color: #fff;
   font-size: 1.4em;
   padding: .8em;
+  transition: bottom 1s cubic-bezier(0.215, 0.61, 0.355, 1);
 }
 
 .info {
@@ -574,3 +594,70 @@ form {
 .success {
   background-color: #46B98A;
 }
+
+.green {
+  color: #46B98A !important;
+}
+
+.red {
+  color: #E0645C !important;
+}
+
+.blue {
+  color: #2DB6CF !important;
+}
+
+.white {
+  color: #fff !important;
+}
+
+.green-hover:hover {
+  color: #46B98A !important;
+}
+
+.red-hover:hover {
+  color: #E0645C !important;
+}
+
+.blue-hover:hover {
+  color: #2DB6CF !important;
+}
+
+.white-hover:hover {
+  color: #fff !important;
+}
+
+.red-bg {
+  background-color: #E0645C !important;
+}
+
+.blue-bg {
+  background-color: #2DB6CF !important;
+}
+
+.white-bg {
+  background-color: #fff !important;
+}
+
+.dark-bg {
+  background-color: #303030 !important;
+}
+
+.red-bg-hover:hover {
+  background-color: #E0645C !important;
+}
+
+.blue-bg-hover:hover {
+  background-color: #2DB6CF !important;
+}
+
+.white-bg-hover:hover {
+  background-color: #fff !important;
+}
+
+.dark-bg-hover:hover {
+  background-color: #303030 !important;
+}
+
+
+

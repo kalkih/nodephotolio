@@ -7,6 +7,7 @@ var path = require('path');
 var fs = require('fs-extra');
 var gm = require('gm').subClass({ imageMagick: true });
 var router = express.Router();
+var methodOverride = require('method-override')
 
 router.get('/', function(req, res) {
 
@@ -17,7 +18,7 @@ router.get('/', function(req, res) {
     }
 
     models.Gallery.findAll({
-        limit: 4,
+        limit: 8,
         order: 'createdAt DESC'
     }).then(function(galleries) {
 
@@ -40,8 +41,9 @@ router.get('/', function(req, res) {
                 }
                 gallery['dataValues']['url'] = '/gallery/' + gallery['dataValues']['name'] + '/' + gallery['dataValues']['year'] + '/' + gallery['dataValues']['month'];
 
+                var slideshow = [photo];
                 if (index == galleries.length -1) {
-                    res.render('dashboard/dashboard', { title: 'Dashboard', messages: req.flash(), latestGalleries: galleries, session: req.session });
+                    res.render('dashboard/dashboard', { title: 'Dashboard', messages: req.flash(), latestGalleries: galleries, slideshow: slideshow, session: req.session });
                 };
             });
 
@@ -192,6 +194,33 @@ router.post('/upload', function(req, res) {
     });
     form.parse(req, function() {
 
+    });
+
+});
+
+router.delete('/:name/:year/:month', function(req, res) {
+
+    if (!req.session.user) {
+        req.flash('error', 'Login required');
+        res.redirect('/login');
+        return;
+    }
+
+    models.Gallery.destroy({
+        where : {
+            name : req.params['name'],
+            year : req.params['year'],
+            month : req.params['month']
+        }
+    }).then(function(gallery) {
+        models.Photo.destroy({
+            where : {
+                GalleryId : gallery.id
+            }
+        }).then(function(photo) {
+            req.flash('success', 'Gallery deleted');
+            res.redirect('/gallery');
+        });
     });
 
 });

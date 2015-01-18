@@ -33,6 +33,11 @@ $(document).ready(function(){
     };
 
     if(isMobile.any()) {
-        $('.specGallery #slideshow').remove();
+        $('.mobile #slideshow').remove();
     }
+
+    setTimeout(function() {
+        $('.success, .error, .info').css('bottom', '-60px');
+        console.log($('.success, .error, .info'));
+    }, 3000);
 });

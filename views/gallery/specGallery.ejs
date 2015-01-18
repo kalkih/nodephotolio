@@ -3,7 +3,7 @@
     <% include ../page/head.ejs %>
     <link rel="stylesheet" href="/stylesheets/background.css">
 </head>
-<body class="specGallery">
+<body class="mobile">
     <% include ../page/header.ejs %>
     <% include ../page/background.ejs %>
     <div id="content" class="gallery gallerySpec">
@@ -35,8 +35,17 @@
     </div>
     <% if (typeof session.user !== 'undefined') { %>
         <div class="admin">
-            <a class="upload-text" href="/gallery"><i class="fa fa-upload"></i> <span>Upload</span></a> | <a class="remove-text" href="/gallery"><i class="fa fa-remove"></i> <span>Remove</span></a>
+
+            <a class="upload-text" href="/gallery">
+                <i class="fa fa-upload"></i> <span>Upload</span>
+            </a> |
+            <a class="remove-text">
+                <i class="fa fa-remove"></i> <span>Remove</span>
+            </a>
         </div>
+        <form id="remove-form" action="/dashboard/<%= gallery['dataValues']['name'] %>/<%= gallery['dataValues']['year'] %>/<%= gallery['dataValues']['month'] %>" method="post" enctype="application/x-www-form-urlencoded">
+            <input type="hidden" name="_method" value="delete" />
+        </form>
     <% } %>
     <div class="bottom"></div>
 
