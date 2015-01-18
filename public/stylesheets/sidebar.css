@@ -255,6 +255,10 @@
     border-bottom: 1px solid #212121;
 }
 
+#sidebar ul a:first-child {
+  font-size: 2em;
+}
+
 #sidebar li:hover {
     background-color: #303030;
 }
