@@ -42,15 +42,13 @@ html, body {
 }
 
 #slideshow .button {
+
   border: 3px solid #fff;
-  position: absolute;
-  margin: 0 auto;
-  left:0;
-  right:0;
-  bottom: 30%;
+  position: static;
   text-align: center;
-  width: 140px;
-  vertical-align: middle;
+  max-width: 200px;
+  margin: 0 auto;
+  margin-top: 20%;
   background-size: 100% 200%;
   background-image: linear-gradient(to top, rgba(255, 255, 255, 1) 50%, rgba(255, 255, 255, 0) 50%);
   transition: background-position .2s;
@@ -61,6 +59,22 @@ html, body {
   -ms-user-select: none;
   -o-user-select: none;
   user-select: none;
+
+
+  /*
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  -o-user-select: none;
+  user-select: none;
+  background-size: 100% 200%;
+  background-image: linear-gradient(to top, rgba(255, 255, 255, 1) 50%, rgba(255, 255, 255, 0) 50%);
+  transition: background-position .2s;
+  transition: background-position .2s;
+  border: 3px solid #fff;
+  margin-top: 40%;
+  */
+
 }
 #slideshow .button:hover {
   background-position: 0 -100%;

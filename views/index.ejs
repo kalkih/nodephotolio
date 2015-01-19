@@ -13,12 +13,6 @@
             <div class="slide" style="background-image: url(<%= photo['dataValues']['url'] %>);"></div>
         <% }); %>
 
-        <a href="<%= link %>">
-            <div class="button">
-                <span>More...</span>
-            </div>
-        </a>
-
         <div class="slideshow-content">
             <h2 class="name">
                 <%= appdata.about.name %>
@@ -26,6 +20,11 @@
             <p class="description">
                 <%= appdata.about.summary %>
             </p>
+            <a href="<%= link %>">
+                <div class="button">
+                    <span>More...</span>
+                </div>
+            </a>
         </div>
 
         <!--

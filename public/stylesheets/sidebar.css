@@ -264,7 +264,7 @@
 }
 
 #sidebar a:hover {
-    color: #fff;
+    color: #fff !important;
 }
 
 
