@@ -65,9 +65,11 @@ app.use(function(req, res, next) {
 
 // Setup admin user if not existing
 models.User.findOrCreate({
-    username: app.locals.appdata.admin.username,
-    password: passwordHash.generate(app.locals.appdata.admin.password)
-}).then(function() {
+    where : {
+        username: app.locals.appdata.admin.username,
+        password: passwordHash.generate(app.locals.appdata.admin.password)
+    }
+}).spread(function() {
 });
 
 // error handlers

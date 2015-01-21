@@ -2,7 +2,7 @@
   "development": {
     "username": "root",
     "password": "root",
-    "database": "node-portfolio",
+    "database": "NodePhotolio",
     "host": "localhost",
     "dialect": "mysql",
     "insecureAuth": true
@@ -10,7 +10,7 @@
   "test": {
     "username": "root",
     "password": "root",
-    "database": "node-portfolio",
+    "database": "NodePhotolio",
     "host": "localhost",
     "dialect": "mysql",
     "insecureAuth": true
@@ -18,7 +18,7 @@
   "production": {
     "username": "root",
     "password": "root",
-    "database": "node-portfolio",
+    "database": "NodePhotolio",
     "host": "localhost",
     "dialect": "mysql",
     "insecureAuth": true
