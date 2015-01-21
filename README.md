@@ -9,16 +9,16 @@ NodePhotolio requires the following dependencies. Make sure to install all of th
 * [NPM](http://nodejs.org/)
 * [ImageMagick](http://www.imagemagick.org/)
 
+ImageMagick can be installed with the following command.
+```
+$ apt-get install imagemagick
+```
+
 NodePhotolio does also require a database to work, the following databases are supported:
 * MySQL
 * MariaDB
 * SQLite
 * PostgeSQL
-
-ImageMagick can be installed with the following command.
-```
-$ apt-get install imagemagick
-```
 
 ##Step 1
 Clone the project from GitHub to directory of choice
@@ -33,7 +33,7 @@ Go into the project folder and run npm install. This will install all package de
 This might take a while depending on your setup and internet connection.
 
 ```
-$ cd NodeShoppingCart
+$ cd NodePhotolio
 $ npm install
 ```
 
