@@ -5,6 +5,10 @@ form {
   padding: 0;
   margin: 0;
 }
+form h2 {
+  color : #fff;
+  text-align: center;
+}
 
 .popup-form {
   z-index: 999;
@@ -14,12 +18,13 @@ form {
   right: 0;
   left: 0;
   width: 450px;
-  background-color:rgba(255,255,255,.4);
+  background-color:rgba(255,255,255,.25);
   padding-left:15px;
   padding-right:15px;
   padding-top:7px;
   padding-bottom:15px;
   margin: 0 auto;
+  display: none;
 }
 
 .form-div {
@@ -33,6 +38,15 @@ form {
   left: 50%;
   position: absolute;
   margin-left: -225px;
+}
+
+.fake-input {
+}
+
+.files-selected {
+  color: #fff;
+  text-align: center;
+  font-size: 1.2em;
 }
 
 .input {
@@ -68,16 +82,12 @@ form {
 }
 
 textarea {
-    width: 100%;
-    height: 150px;
-    line-height: 150%;
-    resize:vertical;
+  width: 100%;
+  height: 150px;
+  line-height: 150%;
+  resize:vertical;
 }
 
-input:hover, textarea:hover,
-input:focus, textarea:focus {
-  background-color:white;
-}
 
 #username,
 #username:focus {
@@ -120,17 +130,17 @@ input:focus, textarea:focus {
   float:left;
   width: 100%;
   border: none !important;
-  cursor:pointer;
+  cursor: pointer;
   background-color: #3498db;
-  color:white;
-  font-size:24px;
-  padding-top:22px;
-  padding-bottom:22px;
+  color: white;
+  font-size: 24px;
+  padding-top: 22px;
+  padding-bottom: 22px;
   -webkit-transition: all 0.3s;
   -moz-transition: all 0.3s;
   transition: all 0.3s;
-  margin-top:-4px;
-  font-weight:700;
+  margin-top: -4px;
+  font-weight: 700;
 }
 
 .button-blue:hover{
@@ -163,6 +173,29 @@ input:focus, textarea:focus {
 .button-red:hover{
   background-color: rgba(255,255,255,1);
   color: #E0645C;
+}
+
+.button-green {
+  font-family: 'Montserrat', Arial, Helvetica, sans-serif;
+  float:left;
+  width: 100%;
+  border: none !important;
+  cursor:pointer;
+  background-color: #46B98A;
+  color:white;
+  font-size:24px;
+  padding-top:22px;
+  padding-bottom:22px;
+  margin-bottom:16px;
+  -webkit-transition: all 0.3s;
+  -moz-transition: all 0.3s;
+  transition: all 0.3s;
+  font-weight:700;
+}
+
+.button-green:hover{
+  background-color: rgba(255,255,255,1);
+  color: #46B98A;
 }
 
 .submit:hover {

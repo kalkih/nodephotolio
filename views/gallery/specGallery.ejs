@@ -37,7 +37,7 @@
     <% if (typeof session.user !== 'undefined') { %>
         <div class="admin">
 
-            <a class="upload-text" href="/gallery">
+            <a class="upload-text">
                 <i class="fa fa-upload"></i> <span>Upload</span>
             </a> |
             <a class="remove-text">
@@ -47,6 +47,23 @@
         <form id="remove-form" action="/dashboard/<%= gallery['dataValues']['name'] %>/<%= gallery['dataValues']['year'] %>/<%= gallery['dataValues']['month'] %>" method="post" enctype="application/x-www-form-urlencoded">
             <input type="hidden" name="_method" value="delete" />
         </form>
+
+        <div class='popup-form'>
+            <form class='form' id='upload-form' method='POST' action='/dashboard/<%= gallery['dataValues']['name'] %>/<%= gallery['dataValues']['year'] %>/<%= gallery['dataValues']['month'] %>' enctype='multipart/form-data'>
+                <h2>Upload photos to gallery</h2>
+                <input name='photos' type='file' class='input input-file' placeholder='Photos' id='photofield' required='' multiple='' hidden/>
+                <input name='fake-file' type='reset' class='fake-input button-green fake-input-file' id='photofield' value='Touch to select photos'/>
+
+                <p class="files-selected">
+                    0 Photos selected
+                </p>
+
+                <input type='submit' name='create' value='UPLOAD' class='button-blue button-submit' id='create'/>
+                <input type='reset' name='cancel' value='CANCEL' class='button-red button-cancel' id='cancel'/>
+
+            </form>
+        </div>
+
     <% } %>
     <div class="bottom"></div>
 

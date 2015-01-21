@@ -11,13 +11,11 @@ var methodOverride = require('method-override')
 
 router.get('/', function(req, res) {
 
-    /*
     if (!req.session.user) {
         req.flash('error', 'Login required');
         res.redirect('/login');
         return;
     }
-    */
 
     models.Gallery.findAll({
         limit: 8,
@@ -68,6 +66,8 @@ router.get('/upload', function(req, res) {
 
     res.render('dashboard/upload', { title: 'Upload', messages: req.flash(), session: req.session });
 });
+
+/*
 
 router.post('/upload', function(req, res) {
 
@@ -200,6 +200,8 @@ router.post('/upload', function(req, res) {
 
 });
 
+*/
+
 router.delete('/:name/:year/:month', function(req, res) {
 
     if (!req.session.user) {
@@ -229,13 +231,11 @@ router.delete('/:name/:year/:month', function(req, res) {
 
 router.post('/gallery/new', function(req, res) {
 
-    /*
     if (!req.session.user) {
         req.flash('error', 'Login required');
         res.redirect('/login');
         return;
     }
-    */
 
     models.Gallery.findOrCreate({
         where : {
@@ -254,7 +254,98 @@ router.post('/gallery/new', function(req, res) {
         res.redirect('/gallery/' + gallery.name + '/' + gallery.year + '/' + gallery.month);
     });
 
+});
 
+router.post('/:name/:year/:month', function(req, res) {
+
+    if (!req.session.user) {
+        req.flash('error', 'Login required');
+        res.redirect('/login');
+        return;
+    }
+
+    console.log('here');
+
+    var photos = [];
+    var fields = [];
+    var oldpath = [];
+    var upload_dir;
+    var galleryId;
+    var url;
+    var thumb;
+
+    // Upload
+    var form = new formidable.IncomingForm();
+
+    form.on('file', function(field, file) {
+        var
+            old_path = file.path,
+            ext = file.name.split('.').pop(),
+            index = old_path.lastIndexOf('/') + 1,
+            filename = old_path.substr(index);
+            oldpath.push(old_path);
+
+            upload_dir = path.join(process.env.PWD, '/public/photos/' + req.params['name'] + '/' + req.params['year'] + '/' + req.params['month']);
+            url = '/photos/' + req.params['name'] + '/' + req.params['year'] + '/' + req.params['month'];
+            thumb = path.join(process.env.PWD, '/public/thumb/photos/' + req.params['name'] + '/' + req.params['year'] + '/' + req.params['month']);
+
+            if (!fs.exists(upload_dir)){
+                fs.mkdirpSync(upload_dir);
+                //console.log('New photo folder created');
+            }
+            if (!fs.exists(thumb)){
+                fs.mkdirpSync(thumb);
+                //console.log('New thumb folder created');
+            }
+
+        photos.push(filename + '.' + ext);
+    })
+    .on('end', function() {
+
+        models.Gallery.find({
+            where : {
+                name : req.params['name'],
+                year : req.params['year'],
+                month : req.params['month'],
+            }
+        }).then(function(Gallery) {
+            if (Gallery) {
+                galleryId = Gallery.id;
+                req.flash('success', 'Added ' + photos.length + ' photo(s) to existing gallery');
+                var new_path;
+                photos.forEach(function(element, index){
+
+                    resize_path = path.join(thumb, element);
+                    new_path = path.join(upload_dir, element);
+
+                    fs.renameSync(oldpath[index], new_path, function (err) {
+                        if (err) throw err;
+                    });
+
+                    gm(new_path)
+                    .resize('400', '300', '^')
+                    .gravity('Center')
+                    .crop('400', '300')
+                    .write(resize_path, function (err) {
+                        if (!err) console.log('Thumbnail created');
+                    });
+
+                    models.Photo.create({
+                        url : url + '/' + element,
+                        GalleryId : galleryId
+                    });
+                });
+            };
+
+            res.redirect('/gallery/' + req.params['name'] + '/' + req.params['year'] + '/' + req.params['month']);
+
+        });
+
+
+    });
+    form.parse(req, function() {
+
+    });
 
 });
 

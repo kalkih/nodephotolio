@@ -1,8 +1,7 @@
 $(document).ready(function(){
     'use strict';
 
-    var
-        sidebar = $('#sidebar'),
+    var sidebar = $('#sidebar'),
         sidebarToggleButton = $('#sidebar-toggle'),
         sidebarToggleButtonIcon = $('#sidebar-toggle .fa');
 

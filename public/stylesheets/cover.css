@@ -42,13 +42,12 @@ html, body {
 }
 
 #slideshow .button {
-
   border: 3px solid #fff;
   position: static;
   text-align: center;
   max-width: 200px;
   margin: 0 auto;
-  margin-top: 20%;
+  margin-top: 20% ;
   background-size: 100% 200%;
   background-image: linear-gradient(to top, rgba(255, 255, 255, 1) 50%, rgba(255, 255, 255, 0) 50%);
   transition: background-position .2s;
