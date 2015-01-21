@@ -24,7 +24,7 @@ NodePhotolio does also require a database to work, the following databases are s
 Clone the project from GitHub to directory of choice
 
 ```
-$ git clone https://github.com/kalkih/node-portfolio.git
+$ git clone https://github.com/kalkih/NodePhotolio.git
 
 ```
 
