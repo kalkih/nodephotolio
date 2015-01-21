@@ -20,7 +20,7 @@ NodePhotolio does also require a database to work, the following databases are s
 * SQLite
 * PostgeSQL
 
-##Step 1
+##Step 1 - Get source
 Clone the project from GitHub to directory of choice
 
 ```
@@ -28,7 +28,7 @@ $ git clone https://github.com/kalkih/NodePhotolio.git
 
 ```
 
-##Step 2
+##Step 2 - Install package dependencies
 Go into the project folder and run npm install. This will install all package dependencies that's required to get NodePhotolio up and running.
 This might take a while depending on your setup and internet connection.
 
@@ -37,8 +37,15 @@ $ cd NodePhotolio
 $ npm install
 ```
 
-##Step 3 - Setup database settings
-To get NodePortfolio to talk with your database you'll need to edit the settings in the database json configuration file under 'production'.
+##Step 3 - Setup database
+Create a new database with a name of your choice. If you are running mysql on debian you can use the following command. Just replace root with your user and DbNameHere with a database name of your choice.
+
+```
+$ mysql -u root -p -e "create database DbNameHere";
+
+```
+
+To get NodePortfolio to talk with your database you'll need to edit the settings in the database json configuration file under 'production', make sure to enter the database name for the database you created earlier.
 
 ```
 $ vim config/database.json
@@ -60,16 +67,7 @@ app.set('port', process.env.PORT || 3000);
 
 ```
 
-##Step 5 - Setup database settings
-To get NodePortfolio to talk with your database you'll need to edit the settings in the database json configuration file.
-
-
-```
-$ vim config/database.json
-
-```
-
-##Step 6 - Edit personal information
+##Step 5 - Edit personal information
 Open data.json with vim or your text editor of choice and edit the data to fit your needs.
 
 ```
@@ -77,7 +75,7 @@ $ vim data.json
 
 ```
 
-##Step 7 - Start the server
+##Step 6 - Start the server
 Make sure you are in the root directory of your NodePhotolio installation and enter the following command.
 
 ```
@@ -86,5 +84,12 @@ $ npm start
 
 The server should now fire up.
 
-##Step 8 - Access the website
+##Step 7 - Access the website
 The server is now up and running and you should be able to access the website on localhost:3000.
+
+If you are unable to login to the admin part of the website with the details you entered in the data.json file, restart the server and that should setup the user.
+
+Ctrl + C followed by:
+```
+$ npm start
+```
