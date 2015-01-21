@@ -237,6 +237,9 @@ router.post('/gallery/new', function(req, res) {
         return;
     }
 
+    req.body.name = req.body.name.split(' ').join('-');
+    req.body.name = req.body.name.charAt(0).toUpperCase() + req.body.name.slice(1);
+
     models.Gallery.findOrCreate({
         where : {
             name : req.body.name,
