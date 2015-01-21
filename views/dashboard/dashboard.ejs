@@ -16,12 +16,12 @@
                 <% if (!latestGalleries[0]) { %>
                     <h1 class="heading text-center">Nothing here yet ...</h1>
                 <% };%>
-                <div class="row transparent-bg">
+                <div class="row">
                     <% latestGalleries.forEach(function(gallery, index) { %>
                         <% if (gallery['dataValues']['thumb']) { %>
                             <a href="<%= gallery['dataValues']['url'] %>">
 
-                                <div class="col-xs-12 col-sm-6 col-md-3 item">
+                                <div class="col-xs-12 col-sm-6 col-md-3 item transparent-bg">
 
                                     <div class="item-container">
                                         <h4 class="name"><%= gallery['dataValues']['name'] %></h4>
