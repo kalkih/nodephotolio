@@ -1,4 +1,6 @@
 # NodePhotolio
+NodePhotolio is a online photo portfolio well suited for both professional and amateur photographers. NodePhotolio makes it easy for you to upload and share your best photos with the world.
+NodePhotolio comes with a fresh, modern and fully responsive design. The portfolio looks just as good on an iPhone or android device as it does on a laptop or desktop computer.
 
 #Setup
 This will guide you through the setup process of NodePhotolio for **Debian**.
