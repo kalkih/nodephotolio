@@ -1,6 +1,28 @@
-# NodePhotolio
+#NodePhotolio
 NodePhotolio is a online photo portfolio well suited for both professional and amateur photographers. NodePhotolio makes it easy for you to upload and share your best photos with the world.
-NodePhotolio comes with a fresh, modern and fully responsive design. The portfolio looks just as good on an iPhone or android device as it does on a laptop or desktop computer.
+NodePhotolio comes with a fresh, modern and fully responsive design. The portfolio looks just as good on an iPhone or android device as it does on a laptop or a full sized desktop computer.
+
+NodePhotolio is a one of a kind online photo portfolio, the competitors solutions doesn't stand a chance. The design is the big thing that makes this photo portfolio stand out from the rest, combine that with the easy to use administration features and that makes it a obvious choice.
+
+NodePhotolio is still in the very first stage of releases and there are much stuff to come in the near feature that will make it better than it already is.
+
+##Features
+* MVC based
+* Works in all major browsers (incl IE)
+* Landing page
+* Responsive design
+* Mobile friendly
+* Administration panel
+* Add/remove gallery
+* Upload photo to gallery
+* Batch upload of photos
+* Slideshows
+
+##Coming soon...
+* Improved performance
+* Improved admin panel
+* Remove specific photos
+* Photowall
 
 #Setup
 This will guide you through the setup process of NodePhotolio for **Debian**.
@@ -22,8 +44,8 @@ NodePhotolio does also require a database to work, the following databases are s
 * SQLite
 * PostgeSQL
 
-##Step 1 - Get source
-Clone the project from GitHub to directory of choice
+##Step 1 - Get the source
+Clone the project from GitHub to directory of choice.
 
 ```
 $ git clone https://github.com/kalkih/NodePhotolio.git
