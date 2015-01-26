@@ -33,20 +33,18 @@
                 <% if (galleries[0]['dataValues']['url']) { %>
                     <div class="row placeholders">
                         <% galleries.forEach(function(gallery, index) { %>
-                            <% if (gallery['dataValues']['thumb']) { %>
-                                <a href="<%= gallery['dataValues']['url'] %>">
+                            <a href="<%= gallery['dataValues']['url'] %>">
 
-                                    <div class="col-xs-12 col-sm-6 col-md-3 item">
+                                <div class="col-xs-12 col-sm-6 col-md-3 item">
 
-                                        <div class="item-container">
-                                            <h4 class="name"><%= gallery['dataValues']['name'] %></h4>
-                                            <h5 class="date"><%= gallery['dataValues']['month'] %> <%= gallery['dataValues']['year'] %></h5>
-                                            <img src="<%= gallery['dataValues']['thumb'] %>" class="img-responsive thumb" alt="Gallery thumbnail" width="100%">
-                                        </div>
-
+                                    <div class="item-container">
+                                        <h4 class="name"><%= gallery['dataValues']['name'] %></h4>
+                                        <h5 class="date"><%= gallery['dataValues']['month'] %> <%= gallery['dataValues']['year'] %></h5>
+                                        <img src="<%= gallery['dataValues']['thumb'] %>" class="img-responsive thumb" alt="Gallery thumbnail" width="100%">
                                     </div>
-                                </a>
-                            <% }; %>
+
+                                </div>
+                            </a>
                         <% }); %>
                     </div>
                 <% } else { %>
