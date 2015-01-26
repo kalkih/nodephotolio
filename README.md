@@ -24,6 +24,11 @@ NodePhotolio is still in the very first stage of releases and there are much stu
 * Remove specific photos
 * Photowall
 
+
+#Live demo
+[kalkih.com:3000](kalkih.com:3000)
+
+
 #Setup
 This will guide you through the setup process of NodePhotolio for **Debian**.
 
