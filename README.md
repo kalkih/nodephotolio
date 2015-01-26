@@ -26,7 +26,7 @@ NodePhotolio is still in the very first stage of releases and there are much stu
 
 
 #Live demo
-[HERE](http://www.kalkih.com:3000)
+[HERE](http://kalkih.com:3000)
 
 
 #Setup
