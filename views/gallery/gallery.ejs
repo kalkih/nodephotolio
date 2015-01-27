@@ -30,17 +30,9 @@
 
         <div class="container-fluid">
             <div class="col-sm-12 col-md-12 main">
-                <div class="row placeholders">
-                <% if (!galleries[0]['dataValues']['url']) { %>
-                    <h1 class="heading text-center">Nothing here yet ...</h1>
-                    <% if (typeof session.user !== 'undefined') { %>
-                        <div class="col-centered text-center" style="max-width: 80px; margin-bottom: 100px">
-                            <a href="/dashboard/upload"><div class="custom-button dark-bg red-bg-hover"><i class="fa fa-plus"></i></div></a>
-                        </div>
-                    <% } %>
-                <% } else { %>
-                    <% galleries.forEach(function(gallery, index) { %>
-                        <% if (gallery['dataValues']['thumb']) { %>
+                <% if (galleries[0]['dataValues']['url']) { %>
+                    <div class="row placeholders">
+                        <% galleries.forEach(function(gallery, index) { %>
                             <a href="<%= gallery['dataValues']['url'] %>">
 
                                 <div class="col-xs-12 col-sm-6 col-md-3 item">
@@ -53,14 +45,24 @@
 
                                 </div>
                             </a>
-                        <% }; %>
-                    <% }); %>
+                        <% }); %>
+                    </div>
+                <% } else { %>
+                    <h1 class="heading text-center">Nothing here yet ...</h1>
                 <% }; %>
-                </div>
             </div>
         </div>
 
     </div>
+    <% if (typeof session.user !== 'undefined') { %>
+        <div class="admin center">
+
+            <a class="new-text">
+                <i class="fa fa-plus"></i> <span>New gallery</span>
+            </a>
+
+        </div>
+    <% } %>
 
     <% include ../page/jsdefaults.ejs %>
     <script src="/javascripts/cover.js"></script>

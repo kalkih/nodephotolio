@@ -62,14 +62,15 @@ app.use(function(req, res, next) {
     next(err);
 });
 
-/*
-models.User.create({
-    username: app.locals.appdata.admin.username,
-    password: passwordHash.generate(app.locals.appdata.admin.password)
-}).then(function() {
-    console.log("User created")
+
+// Setup admin user if not existing
+models.User.findOrCreate({
+    where : {
+        username: app.locals.appdata.admin.username,
+        password: passwordHash.generate(app.locals.appdata.admin.password)
+    }
+}).spread(function() {
 });
-*/
 
 // error handlers
 

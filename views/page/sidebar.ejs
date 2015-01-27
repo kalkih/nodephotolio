@@ -4,7 +4,7 @@
 
 <nav id="sidebar">
     <ul>
-        <a href="/"><li><i class="fa fa-home"></i></li></a>
+        <a href="/"><li><%= appdata.site.title %></li></a>
         <a href="/gallery"><li>Gallery</li></a>
         <a href="/about"><li>About</li></a>
         <% if (typeof session.user !== 'undefined') { %>

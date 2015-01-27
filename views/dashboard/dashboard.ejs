@@ -16,7 +16,7 @@
                 <% if (!latestGalleries[0]) { %>
                     <h1 class="heading text-center">Nothing here yet ...</h1>
                 <% };%>
-                <div class="row transparent-bg">
+                <div class="row">
                     <% latestGalleries.forEach(function(gallery, index) { %>
                         <% if (gallery['dataValues']['thumb']) { %>
                             <a href="<%= gallery['dataValues']['url'] %>">
@@ -38,7 +38,7 @@
             <div style="clear: both;"></div>
         </div>
     </div>
-    <div class="admin-center text-centered">
+    <div class="admin center">
         <a class="new-text">
             <i class="fa fa-plus"></i> <span>New gallery</span>
         </a>

@@ -13,6 +13,7 @@ router.get('/', function(req, res) {
         res.render('gallery/gallery', { title: 'Gallery', header: '/images/placeholder/placeholder.jpg', galleries: galleries, messages: req.flash(), session: req.session });
         };
 
+        var current = 0;
         galleries.forEach(function(gallery, index){
             gallery['dataValues']['url'] = '/gallery/' + gallery['dataValues']['name'] + '/' + gallery['dataValues']['year'] + '/' + gallery['dataValues']['month'];
 
@@ -27,11 +28,11 @@ router.get('/', function(req, res) {
                 } else {
                     gallery['dataValues']['thumb'] = '/images/placeholder/placeholder-thumb-grey.png';
                 }
-
                 var slideshow = [photo];
-                if (index == galleries.length -1) {
+                if (current == galleries.length -1) {
                     res.render('gallery/gallery', { title: 'Gallery', header: galleries[0]['dataValues']['cover'], galleries: galleries, slideshow: slideshow, messages: req.flash(), session: req.session });
                 };
+                current++;
             });
 
         });

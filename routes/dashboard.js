@@ -26,6 +26,7 @@ router.get('/', function(req, res) {
             res.render('dashboard/dashboard', { title: 'Dashboard', messages: req.flash(), latestGalleries: galleries, session: req.session });
         };
 
+        var current = 0;
         galleries.forEach(function(gallery, index){
             models.Photo.find({
                 where : {
@@ -42,9 +43,10 @@ router.get('/', function(req, res) {
                 gallery['dataValues']['url'] = '/gallery/' + gallery['dataValues']['name'] + '/' + gallery['dataValues']['year'] + '/' + gallery['dataValues']['month'];
 
                 var slideshow = [photo];
-                if (index == galleries.length -1) {
+                if (current == galleries.length -1) {
                     res.render('dashboard/dashboard', { title: 'Dashboard', messages: req.flash(), latestGalleries: galleries, slideshow: slideshow, session: req.session });
                 };
+                current++;
             });
 
         });
@@ -236,6 +238,9 @@ router.post('/gallery/new', function(req, res) {
         res.redirect('/login');
         return;
     }
+
+    req.body.name = req.body.name.split(' ').join('-');
+    req.body.name = req.body.name.charAt(0).toUpperCase() + req.body.name.slice(1);
 
     models.Gallery.findOrCreate({
         where : {
