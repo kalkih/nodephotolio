@@ -18,15 +18,15 @@
                 <% if (!photos[0]) { %>
                     <h1 class="gallery-name">Nothing here yet ...</h1>
                 <% } else { %>
-                    <div class="row transparent-bg">
+                    <ul id="sortable" class="row transparent-bg">
                         <% photos.forEach(function(photo, index) { %>
-                                <div class="col-xs-12 col-sm-6 col-md-3 item">
-                                    <div class="item-container">
+                                <li photoID="<%= photo['dataValues']['id'] %>" class="col-xs-12 col-sm-6 col-md-3 item ui-state-default">
+                                    <div class="item-container" draggable="true">
                                         <img src="/thumb<%= photo['dataValues']['url'] %>" class="img-responsive thumb" alt="photo thumbnail" width="100%">
                                     </div>
-                                </div>
+                                </li>
                         <% }); %>
-                    </div>
+                    </ul>
                 <% }; %>
             </div>
         </div>
@@ -36,6 +36,7 @@
     </div>
     <% if (typeof session.user !== 'undefined') { %>
         <div class="admin">
+            <script src="/javascripts/admin.js"></script>
 
             <a class="upload-text">
                 <i class="fa fa-upload"></i> <span>Upload</span>

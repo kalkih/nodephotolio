@@ -69,141 +69,6 @@ router.get('/upload', function(req, res) {
     res.render('dashboard/upload', { title: 'Upload', messages: req.flash(), session: req.session });
 });
 
-/*
-
-router.post('/upload', function(req, res) {
-
-    if (!req.session.user) {
-        req.flash('error', 'Login required');
-        res.redirect('/login');
-        return;
-    }
-
-    var photos = [];
-    var fields = [];
-    var oldpath = [];
-    var upload_dir;
-    var galleryId;
-    var url;
-    var thumb;
-
-    // Upload
-    var form = new formidable.IncomingForm();
-
-    form.on('field', function(field, value) {
-        fields.push(value)
-    })
-    .on('file', function(field, file) {
-        var
-            old_path = file.path,
-            ext = file.name.split('.').pop(),
-            index = old_path.lastIndexOf('/') + 1,
-            filename = old_path.substr(index);
-            oldpath.push(old_path);
-
-            upload_dir = path.join(process.env.PWD, '/public/photos/' + fields[0] + '/' + fields[1] + '/' + fields[2]);
-            url = '/photos/' + fields[0] + '/' + fields[1] + '/' + fields[2];
-            thumb = path.join(process.env.PWD, '/public/thumb/photos/' + fields[0] + '/' + fields[1] + '/' + fields[2]);
-
-            if (!fs.exists(upload_dir)){
-                fs.mkdirpSync(upload_dir);
-                //console.log('New photo folder created');
-            }
-            if (!fs.exists(thumb)){
-                fs.mkdirpSync(thumb);
-                //console.log('New thumb folder created');
-            }
-
-        photos.push(filename + '.' + ext);
-    })
-    .on('end', function() {
-
-        models.Gallery.find({
-            where : {
-                name : fields[0],
-                year : fields[1],
-                month : fields[2],
-            }
-        }).then(function(Gallery) {
-            if (Gallery) {
-                galleryId = Gallery.id;
-                req.flash('success', 'Added ' + photos.length + ' photos to existing gallery');
-                var new_path;
-                photos.forEach(function(element, index){
-
-                    resize_path = path.join(thumb, element);
-                    new_path = path.join(upload_dir, element);
-
-                    fs.renameSync(oldpath[index], new_path, function (err) {
-                        if (err) throw err;
-
-                    });
-
-
-                    gm(new_path)
-                    .resize('400', '300', '^')
-                    .gravity('Center')
-                    .crop('400', '300')
-                    .write(resize_path, function (err) {
-                        if (!err) console.log('Thumbnail created');
-                    });
-
-                    models.Photo.create({
-                        url : url + '/' + element,
-                        GalleryId : galleryId
-                    });
-                });
-            } else {
-                models.Gallery.create({
-                    name : fields[0],
-                    year : fields[1],
-                    month : fields[2],
-                }).then (function(Gallery) {
-                    galleryId = Gallery.id;
-
-                    var new_path;
-                    photos.forEach(function(element, index){
-
-                        resize_path = path.join(thumb, element);
-                        new_path = path.join(upload_dir, element);
-
-                        fs.renameSync(oldpath[index], new_path, function (err) {
-                            if (err) throw err;
-
-                        });
-
-
-                        gm(new_path)
-                        .resize('400', '300', '^')
-                        .gravity('Center')
-                        .crop('400', '300')
-                        .write(resize_path, function (err) {
-                            if (!err) console.log('Thumbnail created');
-                        });
-
-                        models.Photo.create({
-                            url : url + '/' + element,
-                            GalleryId : galleryId
-                        });
-                    });
-                });
-                req.flash('success', 'Added ' + photos.length + ' photos to new gallery');
-            }
-
-            res.redirect('/dashboard/upload');
-
-        });
-
-
-    });
-    form.parse(req, function() {
-
-    });
-
-});
-
-*/
-
 router.delete('/:name/:year/:month', function(req, res) {
 
     if (!req.session.user) {
@@ -350,6 +215,18 @@ router.post('/:name/:year/:month', function(req, res) {
     });
     form.parse(req, function() {
 
+    });
+
+});
+
+router.put('/order', function(req, res) {
+    if (!req.session.user) {
+        return;
+    }
+
+    req.body.data.forEach(function(photo, index) {
+        index = index +1;
+        models.Photo.update({ rank: index }, { where: { id: photo } });
     });
 
 });

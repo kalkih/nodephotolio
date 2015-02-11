@@ -4,12 +4,12 @@ html, body {
     font-family: 'Bree Serif', serif !important;
     padding: 0;
     margin: 0;
-    height: 100%;
     -webkit-user-select: none;
     -moz-user-select: none;
     -ms-user-select: none;
     -o-user-select: none;
     user-select: none;
+    overflow-x: hidden;
 }
 
 .grey {
@@ -259,9 +259,23 @@ background:#000  no-repeat scroll center center; cursor: pointer;}
   box-shadow: 1px 1px rgba(0,0,0,.1);
 }
 
+.gallery ul {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
 .gallery .item {
   margin-bottom: 10px;
   margin-top: 10px;
+  float: left;
+  transition: transform .2s cubic-bezier(0.215, 0.61, 0.355, 1);
+}
+
+.gallery .item.drag {
+  transform: scale(.8);
+  opacity: .9;
+  transition: transform .2s cubic-bezier(0.215, 0.61, 0.355, 1);
 }
 
 .gallerySpec {
@@ -673,7 +687,3 @@ background:#000  no-repeat scroll center center; cursor: pointer;}
 .no-pointer {
   cursor: default !important;
 }
-
-
-
-
