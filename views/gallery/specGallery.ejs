@@ -34,10 +34,10 @@
     <div class="back">
         <a href="/gallery"><i class="fa fa-arrow-left"></i> <span>Back</span></a>
     </div>
-    <% if (typeof session.user !== 'undefined') { %>
-        <div class="admin">
-            <script src="/javascripts/admin.js"></script>
 
+    <% if (typeof session.user !== 'undefined') { %>
+        <script src="/javascripts/admin.js"></script>
+        <div class="admin">
             <a class="upload-text">
                 <i class="fa fa-upload"></i> <span>Upload</span>
             </a> |

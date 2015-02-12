@@ -1,9 +1,20 @@
 $(document).ready(function(){
         var boxes = $('.item-container');
+        var items = $('.item');
 
         $( "#sortable" ).sortable({
             start: function (event, ui) {
                 ui.item.addClass('drag');
+
+                $('.ui-sortable-placeholder').css({
+                    height: items.height(),
+                    float: 'left'
+                });
+
+                items.css('height', items.height());
+
+                ui.helper.css('margin-top', $(window).scrollTop() );
+
             },
 
             update: function (event, ui) {
@@ -24,6 +35,11 @@ $(document).ready(function(){
 
             stop: function (event, ui) {
                 ui.item.removeClass('drag');
+                items.css('height', 'auto');
+            },
+
+            beforeStop: function (event, ui) {
+                ui.helper.css('margin-top', 10 );
             },
         });
 
