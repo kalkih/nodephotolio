@@ -220,13 +220,20 @@ router.post('/:name/:year/:month', function(req, res) {
 });
 
 router.put('/order', function(req, res) {
-    if (!req.session.user) {
+    /*if (!req.session.user) {
         return;
-    }
+    }*/
 
     req.body.data.forEach(function(photo, index) {
         index = index +1;
-        models.Photo.update({ rank: index }, { where: { id: photo } });
+        models.Photo.update({ rank: index }, { where: { id: photo } })
+            .on('success', function(id){
+            }).on('failure', function(error){
+                return res.send('Failed to update!');
+            });
+            if (index == req.body.data.length) {
+                return res.send('Changes saved!');
+            };
     });
 
 });

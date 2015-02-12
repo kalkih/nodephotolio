@@ -2,6 +2,8 @@ $(document).ready(function(){
         var boxes = $('.item-container');
         var items = $('.item');
 
+        boxes.css('cursor', 'move');
+
         $( "#sortable" ).sortable({
             start: function (event, ui) {
                 ui.item.addClass('drag');
@@ -29,7 +31,20 @@ $(document).ready(function(){
                         data: data
                     },
                     type: 'PUT',
-                    url: '/dashboard/order'
+                    url: '/dashboard/order',
+                    success:function(data) {
+                      console.log(data);
+                    }
+                });
+
+                $('body').append('<div class="success"><span>Changed order!</span></div>')
+
+                setTimeout(function() {
+                    $('.success, .error, .info').css('bottom', '-60px');
+                }, 3000);
+
+                $('.success, .error, .info').click(function() {
+                    $('.success, .error, .info').css('bottom', '-60px');
                 });
             },
 
