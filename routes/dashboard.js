@@ -220,22 +220,45 @@ router.post('/:name/:year/:month', function(req, res) {
 });
 
 router.put('/order', function(req, res) {
-    /*if (!req.session.user) {
-        return;
-    }*/
+    if (!req.session.user) {
+        return res.send({
+            'msg': 'Permission denied!',
+            'type': 'fail'
+        });
+    }
 
     req.body.data.forEach(function(photo, index) {
         index = index +1;
         models.Photo.update({ rank: index }, { where: { id: photo } })
             .on('success', function(id){
             }).on('failure', function(error){
-                return res.send('Failed to update!');
+                return res.send({
+                    'msg': 'Failed to update!',
+                    'type': 'fail'
+                });
             });
             if (index == req.body.data.length) {
-                return res.send('Changes saved!');
+                return res.send({
+                    'msg': 'Saved changes!',
+                    'type': 'success'
+                });
             };
     });
 
+});
+
+router.delete('/image/:id', function(req, res) {
+    if (!req.session.user) {
+        return;
+    }
+
+    var id = req.params['id'];
+
+    models.Photo.destroy({
+        where: {
+            id: id
+        }
+    });
 });
 
 module.exports = router;

@@ -21,8 +21,16 @@
                     <ul id="sortable" class="row transparent-bg">
                         <% photos.forEach(function(photo, index) { %>
                                 <li photoID="<%= photo['dataValues']['id'] %>" class="col-xs-12 col-sm-6 col-md-3 item ui-state-default">
-                                    <div class="item-container" draggable="true">
+                                    <div class="item-container <% if (typeof session.user !== 'undefined') {%>item-container-admin<% }; %>" draggable="true">
                                         <img src="/thumb<%= photo['dataValues']['url'] %>" class="img-responsive thumb" alt="photo thumbnail" width="100%">
+                                        <% if (typeof session.user !== 'undefined') { %>
+                                            <figcaption>
+                                                <div class="fig-container">
+                                                    <i photoID="<%= photo['dataValues']['id'] %>" class="fa fa-remove first"></i>
+                                                    <i photoID="<%= photo['dataValues']['id'] %>" class="fa fa-star second"></i>
+                                                </div>
+                                            </figcaption>
+                                        <% }; %>
                                     </div>
                                 </li>
                         <% }); %>
@@ -34,9 +42,9 @@
     <div class="back">
         <a href="/gallery"><i class="fa fa-arrow-left"></i> <span>Back</span></a>
     </div>
-<script src="/javascripts/admin.js"></script>
-    <% if (typeof session.user !== 'undefined') { %>
 
+    <% if (typeof session.user !== 'undefined') { %>
+        <script src="/javascripts/admin.js"></script>
         <div class="admin">
             <a class="upload-text">
                 <i class="fa fa-upload"></i> <span>Upload</span>
