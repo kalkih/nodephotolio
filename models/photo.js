@@ -5,13 +5,10 @@ module.exports = function(sequelize, DataTypes) {
         url: DataTypes.STRING,
         featured: DataTypes.STRING,
         rank: DataTypes.INTEGER
-    }, {
-        classMethods: {
-            associate: function(models) {
-                Photo.belongsTo(models.Gallery)
-            }
-        }
     });
+    Photo.associate = function(models) {
+        models.Photo.belongsTo(models.Gallery);
+    };
 
     return Photo;
 };

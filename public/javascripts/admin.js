@@ -133,7 +133,6 @@ $(document).ready(function(){
         .animate({'opacity' : '1'}, 'slow')
         .appendTo('#content');
 
-        console.log(($('.popup-form').height() / 2));
         $('.popup-form').css('margin-top', -($('.popup-form').height() / 2) );
 
         $('<div id="overlay" class="no-pointer"></div>')
@@ -158,11 +157,6 @@ $(document).ready(function(){
             removeText.addClass('white red-hover no');
             uploadText.html('<i class="fa fa-check"></i> <span>Yes</span>');
             uploadText.addClass('white green-hover yes');
-
-            //$('.remove-text').click(function() {
-            //    $("#remove-form").submit();
-            //    console.log('delete');
-            //});
 
             removeText.click(function() {
                 removeText.find('span').html('Remove');

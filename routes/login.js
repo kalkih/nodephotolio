@@ -17,7 +17,6 @@ router.get('/', function(req, res) {
             photo[0]['dataValues'] = ['url'];
             photo[0]['dataValues']['url'] = '/images/placeholder/placeholder-black.png';
         }
-        console.log(photo[0]['dataValues']['url']);
         var slideshow = [photo[0]];
         res.render('login', { title: 'Login', slideshow : slideshow, messages: req.flash(), session: req.session });
     });
@@ -35,10 +34,7 @@ router.post('/', function(req, res) {
             if (passwordHash.verify(req.body.password, user.password)) {
                 req.session.user = user.username;
 
-                console.log(req.session.user);
-
                 req.flash('success', 'Logged in!')
-                console.log("Success");
                 res.redirect('/dashboard');
             } else {
                 req.flash('error', 'Wrong password!')

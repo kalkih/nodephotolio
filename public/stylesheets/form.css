@@ -11,11 +11,10 @@ form h2 {
 }
 
 .popup-form {
+  -webkit-transform: translate3d(0,0,0);
   z-index: 999;
   position: fixed !important;
   top: 50%;
-  left: 0;
-  right: 0;
   left: 0;
   width: 450px;
   background-color:rgba(255,255,255,.25);
@@ -23,7 +22,9 @@ form h2 {
   padding-right:15px;
   padding-top:7px;
   padding-bottom:15px;
-  margin: 0 auto;
+  left: 50%;
+  margin: 0;
+  transform: translateX(-50%);
   display: none;
 }
 
@@ -123,6 +124,11 @@ textarea {
   background-repeat: no-repeat;
 }
 
+#monthfield {
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+}
 
 
 .button-blue{

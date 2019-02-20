@@ -16,10 +16,11 @@ router.get('/', function(req, res) {
         res.redirect('/login');
         return;
     }
+    console.log(req.session.user)
 
     models.Gallery.findAll({
         limit: 8,
-        order: 'createdAt DESC'
+        order: [['createdAt', 'DESC']]
     }).then(function(galleries) {
 
         if (!galleries[0]) {
@@ -113,8 +114,8 @@ router.post('/gallery/new', function(req, res) {
             year : req.body.year,
             month : req.body.month
         }
-    }).spread(function(gallery, created) {
-        gallery = gallery.values;
+    }).then(function(gallery, created) {
+        gallery = gallery[0].dataValues;
         if (created) {
             req.flash('success', 'New gallery created!');
         } else {
@@ -133,8 +134,6 @@ router.post('/:name/:year/:month', function(req, res) {
         res.redirect('/login');
         return;
     }
-
-    console.log('here');
 
     var photos = [];
     var fields = [];
@@ -161,11 +160,9 @@ router.post('/:name/:year/:month', function(req, res) {
 
             if (!fs.exists(upload_dir)){
                 fs.mkdirpSync(upload_dir);
-                //console.log('New photo folder created');
             }
             if (!fs.exists(thumb)){
                 fs.mkdirpSync(thumb);
-                //console.log('New thumb folder created');
             }
 
         photos.push(filename + '.' + ext);
@@ -227,22 +224,23 @@ router.put('/order', function(req, res) {
         });
     }
 
-    req.body.data.forEach(function(photo, index) {
+    req.body['data[]'].forEach(function(photo, index) {
+        console.log(photo);
         index = index +1;
-        models.Photo.update({ rank: index }, { where: { id: photo } })
-            .on('success', function(id){
-            }).on('failure', function(error){
-                return res.send({
+        models.Photo.update({ rank: index }, { where: { id: photo } }).then(function(result){
+            if (result.length !== 1) {
+                res.send({
                     'msg': 'Failed to update!',
                     'type': 'fail'
                 });
+            }
+        });
+        if (index === req.body['data[]'].length) {
+            return res.send({
+                'msg': 'Saved changes!',
+                'type': 'success'
             });
-            if (index == req.body.data.length) {
-                return res.send({
-                    'msg': 'Saved changes!',
-                    'type': 'success'
-                });
-            };
+        };
     });
 
 });

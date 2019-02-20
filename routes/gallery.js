@@ -10,7 +10,7 @@ router.get('/', function(req, res) {
             galleries[0] = ['dataValues'];
             galleries[0]['dataValues'] = ['cover'];
             galleries[0]['dataValues']['cover'] = '/images/placeholder/placeholder-black.png';
-        res.render('gallery/gallery', { title: 'Gallery', header: '/images/placeholder/placeholder.jpg', galleries: galleries, messages: req.flash(), session: req.session });
+            return res.render('gallery/gallery', { title: 'Galleries', header: '/images/placeholder/placeholder.jpg', galleries: galleries, messages: req.flash(), session: req.session });
         };
 
         var current = 0;
@@ -30,7 +30,7 @@ router.get('/', function(req, res) {
                 }
                 var slideshow = [photo];
                 if (current == galleries.length -1) {
-                    res.render('gallery/gallery', { title: 'Gallery', header: galleries[0]['dataValues']['cover'], galleries: galleries, slideshow: slideshow, messages: req.flash(), session: req.session });
+                    res.render('gallery/gallery', { title: 'Galleries', header: galleries[0]['dataValues']['cover'], galleries: galleries, slideshow: slideshow, messages: req.flash(), session: req.session });
                 };
                 current++;
             });
@@ -52,7 +52,7 @@ router.get('/:name/:year/:month', function(req, res) {
             models.Photo.findAll({
                 where : {
                     GalleryId : gallery.id
-                }, order: 'rank'
+                }, order: ['rank']
             }).then(function(photos) {
                 var slideshow;
                 if (photos[0]) {
